@@ -8,7 +8,7 @@ jobs:
     name: Pull from github
     runs-on: ubuntu-latest
     steps:
-    - name: deploy dev lokreatif.yntkts.my.id
+    - name: deploy dev surveygigi
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
