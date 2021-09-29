@@ -17,11 +17,11 @@
             $email = $this->post('email');
             $name = $this->post('name');
             $gender = $this->post('gender');
-            $birth_date = $this->post('birth_date');
+            $birth_date = date_format(date_create($this->post('birth_date')), "Y-m-d");
             $phone_number = $this->post('phone_number');
             $school_name = $this->post('school_name');
             $school_class = $this->post('school_class');
-            $password = $this->post('password');
+            $password = md5($this->post('password'));
 
             $arr = array(
                 'email' => $email,
