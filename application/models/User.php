@@ -3,19 +3,11 @@
         public function getAll(){
             return $this->db->get('user')->result();
         }
-        // public function get($id_berita){
-        //     return $this->db->where('id_berita', $id_berita)->get('berita')->row();
-        // }
-        public function insert($param){
+        public function insertUser($param){
             $this->db->insert('user', $param);
         }
         public function checkUser($param) {		
+            $this->db->select('email, name, gender, birth_date, phone_number, school_name, school_class');
             return $this->db->get_where('user', $param)->row();
         }	
-        // public function update($param){
-        //     $this->db->where('id_berita', $param['id_berita'])->update('berita', $param);
-        // }
-        // public function delete($id_berita){
-        //     $this->db->where('id_berita', $id_berita)->delete('berita');
-        // }
     }
