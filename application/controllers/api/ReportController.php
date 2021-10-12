@@ -11,7 +11,7 @@
                 'user_email' => $email
             );
             $data['report'] = $this->Report->checkReport($arr);
-            if ($data) {
+            if ($data['report']) {
                 $this->response([
                     'status' => true, 
                     'message' => 'Report successfully',
