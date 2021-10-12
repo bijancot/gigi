@@ -7,8 +7,11 @@
         //     return $this->db->where('id_berita', $id_berita)->get('berita')->row();
         // }
         public function insert($param){
-            $this->db->insert('user', $param);
+            return $this->db->insert('user', $param);
         }
+        public function checkUser($param) {		
+            return $this->db->get_where('user', $param)->row();
+        }	
         // public function update($param){
         //     $this->db->where('id_berita', $param['id_berita'])->update('berita', $param);
         // }
