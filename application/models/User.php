@@ -10,6 +10,7 @@
 
             if($count == 0) {
                 $this->db->insert('user', $param);
+                return true;
             } else {
                 return false;
             }

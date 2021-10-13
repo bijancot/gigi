@@ -26,10 +26,10 @@
                 'password' => md5($this->post('password'))
             );
             $result = $this->User->insertUser($arr);
-            if ($result == false) {
-                $this->response(['status' => false, 'message' => 'Register failed, email is already exists'], 404);     
+            if ($result) {
+                $this->response(['status' => true, 'message' => 'Register successfully'], 200);
             } else {
-                $this->response(['status' => true, 'message' => 'Register successfully'], 200);           
+                $this->response(['status' => false, 'message' => 'Register failed, email is already exists'], 404);     
             }
         }
         public function login_post() {
@@ -39,6 +39,40 @@
             $arr = array(
                 'email' => $email,
                 'password' => $password
+            );
+            
+            $data['user'] = $this->User->checkUser($arr);
+            if ($data['user']) {
+                $arrReport = array(
+                    'user_email' => $email
+                );
+                if ($this->Report->checkUserReport($arrReport)) {
+                    $insert = array(
+                        'user_email' => $email,
+                        'status' => 'ongoing'
+                    );
+                    $this->Report->insertReport($insert);
+                }
+                $data['report'] = $this->Report->checkReport($arrReport);
+            }
+            if ($data['user']) {
+                $this->response([
+                    'status' => true, 
+                    'message' => 'Login successfully',
+                    'data' => $data], 200);
+            } else {
+                $this->response(['status' => false, 'message' => 'Login failed'], 404);
+            }
+        }
+        public function forgotPassword() {
+            $email = $this->post('email');
+            $password = md5($this->post('password'));
+            $newpassword = md5($this->post('newpassword'));
+            
+            $arr = array(
+                'email' => $email,
+                'password' => $password,
+                'newpassword' => $newpassword
             );
             
             $data['user'] = $this->User->checkUser($arr);
