@@ -25,8 +25,12 @@
                 'school_class' => $this->post('school_class'),
                 'password' => md5($this->post('password'))
             );
-            $this->User->insertUser($arr);
-            $this->response(['status' => true, 'message' => 'Register successfully'], 200);           
+            $result = $this->User->insertUser($arr);
+            if ($result == false) {
+                $this->response(['status' => false, 'message' => 'Register failed, email is already exists'], 404);     
+            } else {
+                $this->response(['status' => true, 'message' => 'Register successfully'], 200);           
+            }
         }
         public function login_post() {
             $email = $this->post('email');
