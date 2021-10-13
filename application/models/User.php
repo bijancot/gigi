@@ -19,4 +19,21 @@
             $this->db->select('email, name, gender, birth_date, phone_number, school_name, school_class');
             return $this->db->get_where('user', $param)->row();
         }	
+        public function forgotPassword($param) {
+            $this->db->where('email', $param['email']);
+            $this->db->where('password', $param['password']);
+            $count = $this->db->get('user')->num_rows();
+
+            if($count > 0) {
+                $this->db->where('email', $param['email']);
+                $this->db->where('password', $param['password']);
+                $data = array(
+                    'password' => $param['newpassword']
+                );      
+                $this->db->update('user', $data);
+                return true;
+            } else {
+                return false;
+            }
+        }
     }

@@ -53,12 +53,11 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-// Register POST
+// User
 $route['api/user/register']         = 'api/UserController/register';
-
-// Login POST
 $route['api/user/login']            = 'api/UserController/login';
+$route['api/user/forgot']            = 'api/UserController/forgotPassword';
 
-// POST Get Progress
+// Report
 $route['api/report']                = 'api/ReportController/report';
 $route['api/report/add']            = 'api/ReportController/reportAdd';
