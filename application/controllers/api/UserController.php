@@ -75,10 +75,12 @@
                 'newpassword' => $newpassword
             );
             $result = $this->User->forgotPassword($arr);
-            if ($result) {
+            if ($result == 2) {
                 $this->response(['status' => true, 'message' => 'Password reset successfully'], 200);
-            } else {
-                $this->response(['status' => false, 'message' => "Email or Password doesn't match"], 404);     
+            } else if ($result == 0){
+                $this->response(['status' => false, 'message' => "Old Password doesn't match"], 404);     
+            } else if ($result == 1) {
+                $this->response(['status' => true, 'message' => "Email doesn't match"], 200);
             }
         }
     }

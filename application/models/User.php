@@ -21,19 +21,25 @@
         }	
         public function forgotPassword($param) {
             $this->db->where('email', $param['email']);
-            $this->db->where('password', $param['password']);
             $count = $this->db->get('user')->num_rows();
 
             if($count > 0) {
                 $this->db->where('email', $param['email']);
                 $this->db->where('password', $param['password']);
-                $data = array(
-                    'password' => $param['newpassword']
-                );      
-                $this->db->update('user', $data);
-                return true;
+                $count_pass = $this->db->get('user')->num_rows();
+                if ($count_pass > 0) {
+                    $this->db->where('email', $param['email']);
+                    $this->db->where('password', $param['password']);
+                    $data = array(
+                        'password' => $param['newpassword']
+                    );      
+                    $this->db->update('user', $data);
+                    return 2;
+                } else {
+                    return 0;
+                }
             } else {
-                return false;
+                return 1;
             }
         }
     }
