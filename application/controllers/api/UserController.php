@@ -15,7 +15,7 @@
             ], 200);
         }
         public function register_post() {
-            $this->form_validation->set_rules('email','Email','required|valid_email|is_unique[user.email]', array(
+            $this->form_validation->set_rules('email','Email','required|is_unique[user.email]', array(
                 'is_unique' => '%s already exists.'
             ));
             $this->form_validation->set_rules('name','Name','required');
