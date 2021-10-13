@@ -15,9 +15,10 @@
             ], 200);
         }
         public function register_post() {
-            $this->form_validation->set_rules('email','Email','required|is_unique[user.email]', array(
-                'is_unique' => '%s already exists.'
-            ));
+            // $this->form_validation->set_rules('email','Email','required|is_unique[user.email]', array(
+            //     'is_unique' => '%s already exists.'
+            // ));
+            $this->form_validation->set_rules('email','Email','required');
             $this->form_validation->set_rules('name','Name','required');
             $this->form_validation->set_rules('gender','Gender','required');
             $this->form_validation->set_rules('birth_date','Birth Date','required');
