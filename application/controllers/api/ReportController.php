@@ -17,7 +17,7 @@
                     'message' => 'Report successfully',
                     'data' => $data], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Report failed'], 404);
+                $this->response(['status' => false, 'message' => 'Report failed'], 200);
             }
         }
         public function reportAdd_post() {
@@ -37,7 +37,7 @@
                     'status' => true, 
                     'message' => 'Report add successfully'], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Report add failed'], 404);
+                $this->response(['status' => false, 'message' => 'Report add failed'], 200);
             }
         }
     }

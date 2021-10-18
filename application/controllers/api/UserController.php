@@ -29,7 +29,7 @@
             if ($result) {
                 $this->response(['status' => true, 'message' => 'Register successfully'], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Register failed, email is already exists'], 404);     
+                $this->response(['status' => false, 'message' => 'Register failed, email is already exists'], 200);     
             }
         }
         public function login_post() {
@@ -61,7 +61,7 @@
                     'message' => 'Login successfully',
                     'data' => $data], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Login failed'], 404);
+                $this->response(['status' => false, 'message' => 'Login failed'], 200);
             }
         }
         public function forgotPassword_post() {
@@ -78,9 +78,9 @@
             if ($result == 2) {
                 $this->response(['status' => true, 'message' => 'Password reset successfully'], 200);
             } else if ($result == 0){
-                $this->response(['status' => false, 'message' => "Old Password doesn't match"], 404);     
+                $this->response(['status' => false, 'message' => "Old Password doesn't match"], 200);     
             } else if ($result == 1) {
-                $this->response(['status' => false, 'message' => "Email doesn't match"], 404);
+                $this->response(['status' => false, 'message' => "Email doesn't match"], 200);
             }
         }
     }
