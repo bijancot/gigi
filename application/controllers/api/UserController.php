@@ -61,7 +61,7 @@
                     'message' => 'Login successfully',
                     'data' => $data], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Login failed'], 200);
+                $this->response(['status' => false, 'message' => 'Login failed, email or password is incorrect'], 200);
             }
         }
         public function forgotPassword_post() {
