@@ -5,24 +5,44 @@
             parent::__construct();
             $this->load->model('Report');
         }
+        public function checkReport_post() {
+            $email = $this->post('email');
+            $temp = $this->Report->checkReport($email);
+            // if ($temp->entry == 4) {
+            //     $day = array(
+            //         'day' => $temp->day + 1
+            //     );
+            // } else {
+            //     $day = array(
+            //         'day' => 1
+            //     );
+            // }
+            if ($temp->entry != 4) {
+                $day = array(
+                    'day' => 1
+                );
+            } 
+            $this->Report->changeDayReport($email, $day);
+            $this->report_post();
+        }
         public function report_post() {
             $email = $this->post('email');
             $arr = array(
                 'user_email' => $email
             );
-            $data['report'] = $this->Report->checkReport($arr);
+            $data['report'] = $this->Report->getReport($arr);
             if ($data['report']) {
                 $this->response([
                     'status' => true, 
-                    'message' => 'Report successfully',
+                    'message' => 'Get Report successfully',
                     'data' => $data], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Report failed'], 200);
+                $this->response(['status' => false, 'message' => 'Get Report failed'], 200);
             }
         }
         public function reportAdd_post() {
             $report_id = $this->post('report_id');
-            $image = $this->post('image');
+            $image = $this->upload_pdf($report_id);
             $category = $this->post('category');
             $status = $this->post('status');
             $arr = array(
@@ -35,9 +55,31 @@
             if ($result) {
                 $this->response([
                     'status' => true, 
-                    'message' => 'Report add successfully'], 200);
+                    'message' => 'Add Report successfully'], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Report add failed'], 200);
+                $this->response(['status' => false, 'message' => 'Add Report failed'], 200);
+            }
+        }
+        function upload_pdf($id){
+            $this->load->library('upload');
+            $newPath = './assets/uploads/images/'.$id.'/';
+            if(!is_dir($newPath)){
+                mkdir($newPath, 0777, TRUE);
+            }
+            $config['upload_path'] = $newPath;
+            $config['allowed_types'] = 'png|jpg'; 
+            $config['encrypt_name'] = FALSE;
+     
+            $this->upload->initialize($config);
+            if(!empty($_FILES['image']['name'])){
+     
+                if ($this->upload->do_upload('image')){
+                    $image = $this->upload->data(); 
+                    $fileimage = $image['file_name'];
+    
+                    return base_url('/assets/uploads/images/'.$id.'/'.$fileimage);
+                }
+                          
             }
         }
     }
