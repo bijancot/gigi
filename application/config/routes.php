@@ -58,7 +58,7 @@ $route['login']                         = 'AuthController/login';
 $route['logout']                        = 'AuthController/logout';
 
 $route['dashboard']                     = 'DashboardController';
-$route['student']                       = 'StudentController';
+$route['user']                          = 'UserController';
 $route['report']                        = 'ReportController';
 
 // User

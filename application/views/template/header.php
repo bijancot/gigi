@@ -35,7 +35,12 @@
     <body>
         <div class="connect-container align-content-stretch d-flex flex-wrap">
             <div class="page-sidebar">
-                <div class="logo-box"><a href="#" class="logo-text">Survey Gigi</a><a href="#" id="sidebar-close"><i class="material-icons">close</i></a> <a href="#" id="sidebar-state"><i class="material-icons">adjust</i><i class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a></div>
+                <div class="logo-box">
+                    <a href="<?= site_url('dashboard') ?>" class="logo-text">Survey Gigi</a>
+                    <a href="#" id="sidebar-close"><i class="material-icons">close</i></a> 
+                    <a href="#" id="sidebar-state"><i class="material-icons">adjust</i>
+                    <i class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a>
+                </div>
                 <div class="page-sidebar-inner slimscroll">
                     <ul class="accordion-menu">
                         <li class="sidebar-title">
@@ -44,8 +49,8 @@
                         <li <?= $navActive == 'dashboard' ? 'class="active-page"' : ''?>>
                             <a href="<?= site_url('dashboard') ?>"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
                         </li>
-                        <li <?= $navActive == 'student' ? 'class="active-page"' : ''?>>
-                            <a href="<?= site_url('student') ?>"><i class="material-icons-outlined">account_circle</i>Student</a>
+                        <li <?= $navActive == 'user' ? 'class="active-page"' : ''?>>
+                            <a href="<?= site_url('user') ?>"><i class="material-icons-outlined">account_circle</i>User</a>
                         </li>
                         <li <?= $navActive == 'report' ? 'class="active-page"' : ''?>>
                             <a href="<?= site_url('report') ?>"><i class="material-icons-outlined">summarize</i>Report</a>
