@@ -6,7 +6,7 @@ class AuthController extends CI_Controller {
         $this->load->model('Admin');
     }
     public function index() {
-        if ($this->session->userdata('USER_LOGGED')) {
+        if ($this->session->userdata('user_logged')) {
             redirect('dashboard');
         }
         $this->load->view('auth/login');
