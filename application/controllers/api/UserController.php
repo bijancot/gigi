@@ -53,7 +53,7 @@
                     );
                     $this->Report->insertReport($insert);
                 }
-                $data['report'] = $this->Report->checkReport($email);
+                $data['report'] = $this->Report->getReport($arrReport);
             }
             if ($data['user']) {
                 $this->response([
