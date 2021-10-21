@@ -49,16 +49,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'AuthController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// Admin
+$route['login']                         = 'AuthController/login';
+$route['logout']                        = 'AuthController/logout';
+
+$route['dashboard']                     = 'DashboardController';
+$route['student']                       = 'StudentController';
+$route['report']                        = 'ReportController';
+
 // User
-$route['api/user/register']         = 'api/UserController/register';
-$route['api/user/login']            = 'api/UserController/login';
-$route['api/user/forgot']            = 'api/UserController/forgotPassword';
+$route['api/user/register']             = 'api/UserController/register';
+$route['api/user/login']                = 'api/UserController/login';
+$route['api/user/forgot']               = 'api/UserController/forgotPassword';
 
 // Report
-$route['api/report']                = 'api/ReportController/report';
-$route['api/report/add']            = 'api/ReportController/reportAdd';
-$route['api/report/check']            = 'api/ReportController/checkReport';
+$route['api/report']                    = 'api/ReportController/report';
+$route['api/report/add']                = 'api/ReportController/reportAdd';
+$route['api/report/check']              = 'api/ReportController/checkReport';
