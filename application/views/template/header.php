@@ -24,6 +24,9 @@
         <link href="<?= base_url('assets/css/connect.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/dark_theme.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/custom.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('assets/plugins/DataTables/datatables.min.css') ?>" rel="stylesheet">
+
+        <script src="<?= base_url('assets/plugins/jquery/jquery-3.4.1.min.js') ?>"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,8 +55,16 @@
                         <li <?= $navActive == 'user' ? 'class="active-page"' : ''?>>
                             <a href="<?= site_url('user') ?>"><i class="material-icons-outlined">account_circle</i>User</a>
                         </li>
-                        <li <?= $navActive == 'report' ? 'class="active-page"' : ''?>>
-                            <a href="<?= site_url('report') ?>"><i class="material-icons-outlined">summarize</i>Report</a>
+                        <li <?php if($navActive == 'active-report' || $navActive == 'canceled-report') echo 'class="active-page"'?>>
+                            <a href=""><i class="material-icons-outlined">summarize</i>Report<i class="material-icons has-sub-menu">add</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="<?= site_url('report') ?>" <?= $navActive == 'active-report' ? 'class="active"' : ''?>>Active Report</a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url('canceled-report') ?>" <?= $navActive == 'canceled-report' ? 'class="active"' : ''?>>Canceled Report</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -74,6 +85,9 @@
                                     <span><?= strtok($this->session->userdata('name'), " ") ?></span><i class="material-icons dropdown-icon">keyboard_arrow_down</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"><?= $this->session->userdata('name') ?></a>
+                                    <a class="dropdown-item"><?= $this->session->userdata('email') ?></a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= site_url('logout') ?>">Log out</a>
                                 </div>
                             </li>

@@ -21,14 +21,26 @@
                 $day = array(
                     'day' => 1
                 );
-            } 
+            } else {
+                $day = array(
+                    'day' => $temp->day + 1
+                );
+            }
+            if ($temp->status == 'canceled') {
+                $insert = array(
+                    'user_email' => $email,
+                    'status' => 'ongoing'
+                );
+                $this->Report->insertReport($insert);
+            }
             $this->Report->changeDayReport($email, $day);
             $this->report_post();
         }
         public function report_post() {
             $email = $this->post('email');
             $arr = array(
-                'user_email' => $email
+                'user_email' => $email,
+                'status !=' => 'canceled'
             );
             $data['report'] = $this->Report->getReport($arr);
             if ($data['report']) {

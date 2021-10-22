@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-title">
-                <h2 class="page-desc">List of Active Reports</h2>
+                <h2 class="page-desc">List of Canceled Reports</h2>
             </div>
         </div>
     </div>
@@ -46,10 +46,7 @@
                                             <td>'.$item->day.'</td>
                                             <td>'.$created_at.'</td>
                                             <td>'.$status.'</td>
-                                            <td>
-                                            <a href="#"><i class="material-icons-outlined">edit</i></a>
-                                            <a href="" class="mdCancel" data-id="'.$item->report_id.'" data-toggle="modal" data-target="#mdCancel"><i class="material-icons-outlined">cancel</i></a>
-                                            </td>
+                                            <td></td>
                                         </tr>
                                     ';
                                 }
@@ -71,34 +68,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="mdCancel" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Report</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">close</i>
-                </button>
-            </div>
-            <form action="<?= site_url('report/changeStatus')?>" method="post">
-            <div class="modal-body">
-                    Make this report status to <code>canceled.</code>
-            </div>
-            <div class="modal-footer">
-                <input type="hidden" id="mdID" class="form-control" name="report_id">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
 <script>
     $(document).ready(function() {
-        $('#report').DataTable()
-    })
-    $('#report tbody').on('click', '.mdCancel', function(){
-        const id = $(this).data('id')
-        $('#mdID').val(id)
-    })
+        $('#report').DataTable();
+    });
 </script>

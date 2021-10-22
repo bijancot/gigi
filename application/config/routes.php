@@ -60,6 +60,8 @@ $route['logout']                        = 'AuthController/logout';
 $route['dashboard']                     = 'DashboardController';
 $route['user']                          = 'UserController';
 $route['report']                        = 'ReportController';
+$route['report/changeStatus']           = 'ReportController/changeStatus';
+$route['canceled-report']               = 'ReportController/canceled';
 
 // User
 $route['api/user/register']             = 'api/UserController/register';

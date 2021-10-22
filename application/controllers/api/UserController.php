@@ -6,14 +6,6 @@
             $this->load->model('User');
             $this->load->model('Report');
         }
-        public function index_get(){
-            $result = $this->User->getAll();
-            $this->response([
-                'status' => true, 
-                'message' => 'Data matched!', 
-                'data' => $result
-            ], 200);
-        }
         public function register_post() {
             $arr = array(
                 'email' => $this->post('email'),
@@ -44,7 +36,8 @@
             $data['user'] = $this->User->checkUser($arr);
             if ($data['user']) {
                 $arrReport = array(
-                    'user_email' => $email
+                    'user_email' => $email,
+                    'status !=' => 'canceled'
                 );
                 if ($this->Report->checkUserReport($arrReport)) {
                     $insert = array(
@@ -53,7 +46,6 @@
                     );
                     $this->Report->insertReport($insert);
                 }
-                $this->checkReport($email);
                 $data['report'] = $this->Report->getReport($arrReport);
             }
             if ($data['user']) {
@@ -84,13 +76,17 @@
                 $this->response(['status' => false, 'message' => "Email doesn't match"], 200);
             }
         }
-        public function checkReport($email) {
-            $temp = $this->Report->checkReport($email);
-            if ($temp->entry != 4) {
-                $day = array(
-                    'day' => 1
-                );
-            } 
-            $this->Report->changeDayReport($email, $day);
-        }
+        // public function checkReport($email) {
+        //     $temp = $this->Report->checkReport($email);
+        //     if ($temp->entry != 4) {
+        //         $day = array(
+        //             'day' => 1
+        //         );
+        //     } else {
+        //         $day = array(
+        //             'day' => $temp->day + 1
+        //         );
+        //     }
+        //     $this->Report->changeDayReport($email, $day);
+        // }
     }
