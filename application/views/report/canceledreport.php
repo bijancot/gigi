@@ -46,7 +46,9 @@
                                             <td>'.$item->day.'</td>
                                             <td>'.$created_at.'</td>
                                             <td>'.$status.'</td>
-                                            <td></td>
+                                            <td>
+                                            <a href="'.site_url('report/detail/'.$item->report_id).'"><i class="material-icons-outlined">info</i></a>
+                                            </td>
                                         </tr>
                                     ';
                                 }

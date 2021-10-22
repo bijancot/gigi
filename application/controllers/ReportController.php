@@ -32,4 +32,12 @@ class ReportController extends CI_Controller{
         $this->session->set_flashdata('succ', 'Successfully changed the status on the student ', 1);
         redirect('report');
     }
+    public function detailReport($report_id){
+        $data['title']      = 'Survey Gigi - Detail Report';
+        $data['navActive']  = 'detail-report';
+        $data['reports']    = $this->Report->getID($report_id);
+
+        // print_r($data['reports'])
+        $this->template->view('report/detailreport', $data);
+    }
 }

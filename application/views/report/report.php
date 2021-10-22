@@ -47,8 +47,8 @@
                                             <td>'.$created_at.'</td>
                                             <td>'.$status.'</td>
                                             <td>
-                                            <a href="#"><i class="material-icons-outlined">edit</i></a>
-                                            <a href="" class="mdCancel" data-id="'.$item->report_id.'" data-toggle="modal" data-target="#mdCancel"><i class="material-icons-outlined">cancel</i></a>
+                                                <a href="'.site_url('report/detail/'.$item->report_id).'"><i class="material-icons-outlined">info</i></a>
+                                                <a href="" class="mdCancel" data-id="'.$item->report_id.'" data-toggle="modal" data-target="#mdCancel"><i class="material-icons-outlined">cancel</i></a>
                                             </td>
                                         </tr>
                                     ';

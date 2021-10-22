@@ -62,6 +62,7 @@ $route['user']                          = 'UserController';
 $route['report']                        = 'ReportController';
 $route['report/changeStatus']           = 'ReportController/changeStatus';
 $route['canceled-report']               = 'ReportController/canceled';
+$route['report/detail/(:any)']          = 'ReportController/detailReport/$1';
 
 // User
 $route['api/user/register']             = 'api/UserController/register';

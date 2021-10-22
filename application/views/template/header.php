@@ -55,7 +55,7 @@
                         <li <?= $navActive == 'user' ? 'class="active-page"' : ''?>>
                             <a href="<?= site_url('user') ?>"><i class="material-icons-outlined">account_circle</i>User</a>
                         </li>
-                        <li <?php if($navActive == 'active-report' || $navActive == 'canceled-report') echo 'class="active-page"'?>>
+                        <li <?php if($navActive == 'active-report' || $navActive == 'canceled-report' || $navActive == 'detail-report') echo 'class="active-page"'?>>
                             <a href=""><i class="material-icons-outlined">summarize</i>Report<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>

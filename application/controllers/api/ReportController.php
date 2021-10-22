@@ -33,7 +33,7 @@
                 );
                 $this->Report->insertReport($insert);
             }
-            $this->Report->changeDayReport($email, $day);
+            $this->Report->changeDayReport($temp->report_id, $day);
             $this->report_post();
         }
         public function report_post() {
@@ -54,9 +54,9 @@
         }
         public function reportAdd_post() {
             $report_id = $this->post('report_id');
-            $image = $this->upload_pdf($report_id);
             $category = $this->post('category');
             $status = $this->post('status');
+            $image = $this->upload_image($report_id, $category, $status);
             $arr = array(
                 'report_id' => $report_id,
                 'image' => $image,
@@ -72,16 +72,18 @@
                 $this->response(['status' => false, 'message' => 'Add Report failed'], 200);
             }
         }
-        function upload_pdf($id){
+        function upload_image($id, $category, $status){
             $this->load->library('upload');
             $newPath = './assets/uploads/images/'.$id.'/';
+            $new_name = date('Y_m_d').'-'.$category.'-'.$status;
             if(!is_dir($newPath)){
                 mkdir($newPath, 0777, TRUE);
             }
             $config['upload_path'] = $newPath;
-            $config['allowed_types'] = 'png|jpg'; 
+            $config['allowed_types'] = 'png|jpg|jpeg'; 
             $config['encrypt_name'] = FALSE;
-     
+            $config['file_name'] = $new_name;
+            
             $this->upload->initialize($config);
             if(!empty($_FILES['image']['name'])){
      
