@@ -46,7 +46,7 @@
                     );
                     $this->Report->insertReport($insert);
                 }
-                $data['report'] = $this->Report->getReport($arrReport);
+                // $data['report'] = $this->Report->getReport($arrReport);
             }
             if ($data['user']) {
                 $this->response([
@@ -76,17 +76,4 @@
                 $this->response(['status' => false, 'message' => "Email doesn't match"], 200);
             }
         }
-        // public function checkReport($email) {
-        //     $temp = $this->Report->checkReport($email);
-        //     if ($temp->entry != 4) {
-        //         $day = array(
-        //             'day' => 1
-        //         );
-        //     } else {
-        //         $day = array(
-        //             'day' => $temp->day + 1
-        //         );
-        //     }
-        //     $this->Report->changeDayReport($email, $day);
-        // }
     }

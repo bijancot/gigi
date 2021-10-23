@@ -72,4 +72,4 @@ $route['api/user/forgot']               = 'api/UserController/forgotPassword';
 // Report
 $route['api/report']                    = 'api/ReportController/report';
 $route['api/report/add']                = 'api/ReportController/reportAdd';
-$route['api/report/check']              = 'api/ReportController/checkReport';
+// $route['api/report/check']              = 'api/ReportController/checkReport';

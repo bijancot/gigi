@@ -29,7 +29,7 @@
         public function update($param){
             $this->db->where('report_id', $param['report_id'])->update('report', $param);
         }
-        // API
+        // API User
         public function insertReport($param) {
             $this->db->insert('report', $param);
         }
@@ -37,6 +37,45 @@
             $query = $this->db->get_where('report', $param)->num_rows();
             return ($query > 0) ? FALSE : TRUE;
         }
+        // API Report
+        public function checkLastOpen($param) {
+            $this->db->select('r.report_id as report_id, DATE(r.last_open) as date');
+            $this->db->from('report r');
+            $this->db->join('user u', 'u.email = r.user_email', 'left');
+            $this->db->where('u.email', $param);
+            $this->db->where('r.status !=', 'canceled');
+            return $this->db->get()->row();
+        }
+        public function changeLastOpen($param, $data) {
+            $this->db->where('report_id', $param)->update('report', $data);
+        }
+        public function getDailyReport($param) {
+            $this->db->select('count(rd.created_at) as entry, r.report_id as report_id, r.day as day, r.status as status');
+            $this->db->from('report r');
+            $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
+            $this->db->where($param);
+            $this->db->where('DATE(rd.created_at)', date('Y-m-d'));
+            return $this->db->get()->row();
+        }
+        public function getFirstTimeReport($param) {
+            $this->db->select('r.report_id as report_id, r.day as day, r.status as status');
+            $this->db->from('report r');
+            $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
+            $this->db->where($param);
+            return $this->db->get()->row();
+        }
+        public function getYesterdayReport($param) {
+            $this->db->select('count(rd.created_at) as entry, r.report_id as report_id, r.day as day, r.status as status');
+            $this->db->from('report r');
+            $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
+            $this->db->where('r.user_email', $param);
+            $this->db->where('DATE(rd.created_at)', date('Y-m-d', strtotime('yesterday')));
+            return $this->db->get()->row();
+        }
+        public function updateStatusReport($param, $data) {
+            $this->db->where('report_id', $param)->update('report', $data);
+        }
+        // Old
         public function checkReport($param) {
             $this->db->select('count(*) as entry, r.day as day, r.status as status, r.report_id as report_id');
             $this->db->from('user u');
