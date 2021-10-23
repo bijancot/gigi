@@ -9,14 +9,18 @@
         public function report_post() {
             $email = $this->post('email');
             $last_open = $this->Report->checkLastOpen($email);
-            if ($last_open->date != date("Y-m-d")) {
-                $today = date("Y-m-d h:i:s");
-                $arr = array(
-                    'last_open' => $today
-                );
-                $this->Report->changeLastOpen($last_open->report_id, $arr);
-                $this->checkReport($email, $last_open->report_id);
-            } 
+            if ($last_open == null) {
+                $this->checkReport($email, null);
+            } else {
+                if ($last_open->date != date("Y-m-d")) {
+                    $today = date("Y-m-d h:i:s");
+                    $arr = array(
+                        'last_open' => $today
+                    );
+                    $this->Report->changeLastOpen($last_open->report_id, $arr);
+                    $this->checkReport($email, $last_open->report_id);
+                } 
+            }
             $arr = array(
                 'r.user_email' => $email,
                 'r.status !=' => 'canceled'
