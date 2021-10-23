@@ -152,7 +152,7 @@
                     $image = $this->upload->data(); 
                     $fileimage = $image['file_name'];
     
-                    return base_url('/assets/uploads/images/'.$id.'/'.$fileimage);
+                    return '/assets/uploads/images/'.$id.'/'.$fileimage;
                 }
                           
             }
