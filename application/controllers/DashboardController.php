@@ -10,9 +10,14 @@ class DashboardController extends CI_Controller{
     }
 
     public function index(){
-        $data['title']      = 'Survey Gigi - Dashboard';
-        $data['navActive']  = 'dashboard';
+        $data['title']                  = 'Survey Gigi - Dashboard';
+        $data['navActive']              = 'dashboard';
 
+        $data['users']                  = $this->Dashboard->getUsers();
+        $data['activeReports']          = $this->Dashboard->getActiveReports();
+        $data['finishedReports']        = $this->Dashboard->getFinishedReports();
+        $data['canceledReports']        = $this->Dashboard->getCanceledReports();
+        
         $this->template->view('dashboard', $data);
     }
 }

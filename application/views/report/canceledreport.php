@@ -25,12 +25,8 @@
                         <tbody>
                             <?php 
                                 foreach($reports as $item) {
-                                    if ($item->status == 'ongoing') {
-                                        $status = '<span class="badge badge-info">Ongoing</span>';
-                                    } else if ($item->status == 'canceled') {
-                                        $status = '<span class="badge badge-warning">Canceled</span>';
-                                    } else if ($item->status == 'finished') {
-                                        $status = '<span class="badge badge-success">Finished</span>';
+                                    if ($item->status == 'canceled') {
+                                        $status = '<span class="badge badge-warning">CANCELED</span>';
                                     } else {
                                         $status = '<span class="badge badge-secondary">NULL</span>';
                                     }

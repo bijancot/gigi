@@ -18,8 +18,8 @@
                         'last_open' => $today
                     );
                     $this->Report->changeLastOpen($last_open->report_id, $arr);
-                    $this->checkReport($email, $last_open->report_id);
                 } 
+                $this->checkReport($email, $last_open->report_id);
             }
             $arr = array(
                 'r.user_email' => $email,
@@ -75,11 +75,28 @@
                 );
                 $this->Report->insertReport($insert);
             } else {
-                $update = array(
-                    'day' => $temp->day + 1,
-                    'status' => 'ongoing'
-                );
-                $this->Report->updateStatusReport($report_id, $update);
+                if ($temp->day == 21) {
+                    $arr = array(
+                        'r.user_email' => $email
+                    );
+                    $tempToday = $this->Report->getDailyReport($arr);
+                    if ($tempToday->entry < 4) {
+                        $update = array(
+                            'status' => 'ongoing'
+                        );
+                    } else {
+                        $update = array(
+                            'status' => 'finished'
+                        );
+                    }
+                    $this->Report->updateStatusReport($report_id, $update);
+                } else if ($temp->day < 21) {
+                    $update = array(
+                        'day' => $temp->day + 1,
+                        'status' => 'ongoing'
+                    );
+                    $this->Report->updateStatusReport($report_id, $update);
+                }
             }
         }
         // // Check hari

@@ -26,11 +26,11 @@
                             <?php 
                                 foreach($reports as $item) {
                                     if ($item->status == 'ongoing') {
-                                        $status = '<span class="badge badge-info">Ongoing</span>';
+                                        $status = '<span class="badge badge-info">ONGOING</span>';
                                     } else if ($item->status == 'canceled') {
-                                        $status = '<span class="badge badge-warning">Canceled</span>';
+                                        $status = '<span class="badge badge-warning">CANCELED</span>';
                                     } else if ($item->status == 'finished') {
-                                        $status = '<span class="badge badge-success">Finished</span>';
+                                        $status = '<span class="badge badge-success">FINISHED</span>';
                                     } else {
                                         $status = '<span class="badge badge-secondary">NULL</span>';
                                     }
