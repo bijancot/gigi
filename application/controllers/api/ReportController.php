@@ -12,14 +12,14 @@
             if ($last_open == null) {
                 $this->checkReport($email, null);
             } else {
-                if ($last_open->date != date("Y-m-d")) {
+                if ($last_open->date != date("Y-m-d") || $last_open->day == 21) {
                     $today = date("Y-m-d h:i:s");
                     $arr = array(
                         'last_open' => $today
                     );
                     $this->Report->changeLastOpen($last_open->report_id, $arr);
+                    $this->checkReport($email, $last_open->report_id);
                 } 
-                $this->checkReport($email, $last_open->report_id);
             }
             $arr = array(
                 'r.user_email' => $email,

@@ -39,7 +39,7 @@
         }
         // API Report
         public function checkLastOpen($param) {
-            $this->db->select('r.report_id as report_id, DATE(r.last_open) as date');
+            $this->db->select('r.report_id as report_id, DATE(r.last_open) as date, r.day as day');
             $this->db->from('report r');
             $this->db->join('user u', 'u.email = r.user_email', 'left');
             $this->db->where('u.email', $param);
