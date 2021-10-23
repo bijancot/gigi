@@ -22,8 +22,8 @@
                 'r.status !=' => 'canceled'
             );
             $temp = $this->Report->getDailyReport($arr);
-            $current_time = date("h:i:s");
-            if ($current_time < '17:00:00') {
+            $current_time = date("H");
+            if ($current_time < 17) {
                 $time = 'day';
             } else {
                 $time = 'night';
