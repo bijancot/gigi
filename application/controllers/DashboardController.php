@@ -14,10 +14,13 @@ class DashboardController extends CI_Controller{
         $data['navActive']              = 'dashboard';
 
         $data['users']                  = $this->Dashboard->getUsers();
-        $data['activeReports']          = $this->Dashboard->getActiveReports();
+        $data['ongoingReports']         = $this->Dashboard->getOngoingReports();
         $data['finishedReports']        = $this->Dashboard->getFinishedReports();
         $data['canceledReports']        = $this->Dashboard->getCanceledReports();
+        $data['thisMonthReportTotal']   = $this->Dashboard->getThisMonthReports();
+        $data['todayReports']           = $this->Dashboard->getTodayReports();
         
+        // print_r($data['todayReports']);
         $this->template->view('dashboard', $data);
     }
 }

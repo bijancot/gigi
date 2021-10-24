@@ -61,6 +61,7 @@ $route['dashboard']                     = 'DashboardController';
 $route['user']                          = 'UserController';
 $route['report']                        = 'ReportController';
 $route['report/changeStatus']           = 'ReportController/changeStatus';
+$route['finished-report']               = 'ReportController/finished';
 $route['canceled-report']               = 'ReportController/canceled';
 $route['report/detail/(:any)']          = 'ReportController/detailReport/$1';
 

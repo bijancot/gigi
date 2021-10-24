@@ -17,8 +17,8 @@
                                 <div class="card card-transparent stats-card">
                                     <div class="card-body">
                                         <div class="stats-info">
-                                            <h5 class="card-title"><?= empty($activeReports->total) ? "0" : number_format($activeReports->total) ?></h5>
-                                            <p class="stats-text">Total of Active Reports</p>
+                                            <h5 class="card-title"><?= empty($ongoingReports->total) ? "0" : number_format($ongoingReports->total) ?></h5>
+                                            <p class="stats-text">Total of Ongoing Reports</p>
                                         </div>
                                         <div class="stats-icon change-success">
                                             <i class="material-icons">description</i>
@@ -59,41 +59,32 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Reports<span class="card-title-helper">30 Days</span></h5>
                                         <div class="savings-stats">
-                                            <h5>$4,502.00</h5>
-                                            <span>Total reports for last month</span>
+                                            <h5><?= empty($thisMonthReportTotal->total) ? "0" : number_format($thisMonthReportTotal->total) ?></h5>
+                                            <span>Total reports for this month</span>
                                         </div>
-                                        <div id="sparkline-chart-1"></div>
+                                        <div id="thismonthReportChart"></div>
                                     </div>
                                 </div>
                                 <div class="card top-products">
                                     <div class="card-body">
                                         <h5 class="card-title">Latest Reports<span class="card-title-helper">Today</span></h5>
                                         <div class="top-products-list">
-                                            <div class="product-item">
-                                                <h5>Alpha - File Hosting Service</h5>
-                                                <span>4,037 downloads</span>
-                                                <i class="material-icons product-item-status">light_mode</i>
-                                            </div>
-                                            <div class="product-item">
-                                                <h5>Lime - Task Managment Dashboard</h5>
-                                                <span>1,876 downloads</span>
-                                                <i class="material-icons product-item-status">dark_mode</i>
-                                            </div>
-                                            <div class="product-item">
-                                                <h5>Space - Meetup Hosting App</h5>
-                                                <span>1,252 downloads</span>
-                                                <i class="material-icons product-item-status product-item-danger">arrow_downward</i>
-                                            </div>
-                                            <div class="product-item">
-                                                <h5>Meteor - Messaging App</h5>
-                                                <span>938 downloads</span>
-                                                <i class="material-icons product-item-status product-item-success">arrow_upward</i>
-                                            </div>
-                                            <div class="product-item">
-                                                <h5>Meteor - Messaging App</h5>
-                                                <span>938 downloads</span>
-                                                <i class="material-icons product-item-status product-item-success">arrow_upward</i>
-                                            </div>
+                                            <?php 
+                                                foreach ($todayReports as $item) {
+                                                    if ($item->category == 'day') {
+                                                        $icon = 'light_mode';
+                                                    } else {
+                                                        $icon = 'dark_mode';
+                                                    }
+                                                    echo '
+                                                        <div class="product-item">
+                                                            <h5>'.$item->name.'</h5>
+                                                            <span>Day '.$item->day.'</span>
+                                                            <i class="material-icons product-item-status">'.$icon.'</i>
+                                                        </div>
+                                                    ';
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -140,3 +131,27 @@
                             </div>
                         </div>
                     </div>
+<script>
+    $(document).ready(function() {
+
+    var DrawSparkline = function() {
+        $('#thismonthReportChart').sparkline([0, 34, 43, 35, 44, 45, 56, 37, 58], {
+            type: 'line',
+            width: '100%',
+            height: '100',
+            chartRangeMax: 50,
+            lineColor: '#f78387',
+            fillColor: 'rgba(247, 131, 135,.2)',
+            highlightLineColor: 'transparent',
+            highlightSpotColor: 'transparent',
+            maxSpotColor: 'transparent',
+            spotColor: 'transparent',
+            minSpotColor: 'transparent',
+            lineWidth: 3
+        });
+    };
+
+    DrawSparkline();
+
+    });
+</script>

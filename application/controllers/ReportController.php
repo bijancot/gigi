@@ -11,10 +11,17 @@ class ReportController extends CI_Controller{
 
     public function index(){
         $data['title']      = 'Survey Gigi - Report';
-        $data['navActive']  = 'active-report';
+        $data['navActive']  = 'ongoing-report';
         $data['reports']    = $this->Report->getAll();
 
         $this->template->view('report/report', $data);
+    }
+    public function finished(){
+        $data['title']      = 'Survey Gigi - Report';
+        $data['navActive']  = 'finished-report';
+        $data['reports']    = $this->Report->getAllFinished();
+
+        $this->template->view('report/finishedreport', $data);
     }
     public function canceled(){
         $data['title']      = 'Survey Gigi - Report';

@@ -13,7 +13,16 @@
             $this->db->from('user u');
             $this->db->join('report r', 'r.user_email = u.email');
             $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
-            $this->db->where('r.status !=', 'canceled');
+            $this->db->where('r.status', 'ongoing');
+            $this->db->group_by('r.report_id');
+            return $this->db->get()->result();
+        }
+        public function getAllFinished(){
+            $this->db->select('r.report_id as report_id, u.email as email, u.name as name, r.day as day, r.status as status, max(rd.created_at) as created_at');
+            $this->db->from('user u');
+            $this->db->join('report r', 'r.user_email = u.email');
+            $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
+            $this->db->where('r.status', 'finished');
             $this->db->group_by('r.report_id');
             return $this->db->get()->result();
         }

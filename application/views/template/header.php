@@ -55,11 +55,14 @@
                         <li <?= $navActive == 'user' ? 'class="active-page"' : ''?>>
                             <a href="<?= site_url('user') ?>"><i class="material-icons-outlined">account_circle</i>User</a>
                         </li>
-                        <li <?php if($navActive == 'active-report' || $navActive == 'canceled-report' || $navActive == 'detail-report') echo 'class="active-page"'?>>
+                        <li <?php if($navActive == 'ongoing-report' || $navActive == 'finished-report' || $navActive == 'canceled-report' || $navActive == 'detail-report') echo 'class="active-page"'?>>
                             <a href=""><i class="material-icons-outlined">summarize</i>Report<i class="material-icons has-sub-menu">add</i></a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="<?= site_url('report') ?>" <?= $navActive == 'active-report' ? 'class="active"' : ''?>>Active Report</a>
+                                    <a href="<?= site_url('report') ?>" <?= $navActive == 'ongoing-report' ? 'class="active"' : ''?>>Ongoing Report</a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url('finished-report') ?>" <?= $navActive == 'finished-report' ? 'class="active"' : ''?>>Finished Report</a>
                                 </li>
                                 <li>
                                     <a href="<?= site_url('canceled-report') ?>" <?= $navActive == 'canceled-report' ? 'class="active"' : ''?>>Canceled Report</a>
