@@ -18,7 +18,9 @@
                         'last_open' => $today
                     );
                     $this->Report->changeLastOpen($last_open->report_id, $arr);
-                    $this->checkReport($email, $last_open->report_id);
+                    if ($last_open->status != 'finished') {
+                        $this->checkReport($email, $last_open->report_id);
+                    }
                 } 
             }
             $arr = array(
@@ -64,11 +66,13 @@
         public function checkReport($email, $report_id) {
             $temp = $this->Report->getYesterdayReport($email);
             if ($temp->entry < 4) {
-                $update = array(
-                    'day' => 1,
-                    'status' => 'canceled'
-                );
-                $this->Report->updateStatusReport($report_id, $update);
+                if ($report_id != null) {
+                    $update = array(
+                        'day' => 1,
+                        'status' => 'canceled'
+                    );
+                    $this->Report->updateStatusReport($report_id, $update);
+                }
                 $insert = array(
                     'user_email' => $email,
                     'status' => 'ongoing'
