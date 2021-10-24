@@ -17,8 +17,15 @@ class DashboardController extends CI_Controller{
         $data['ongoingReports']         = $this->Dashboard->getOngoingReports();
         $data['finishedReports']        = $this->Dashboard->getFinishedReports();
         $data['canceledReports']        = $this->Dashboard->getCanceledReports();
+
         $data['thisMonthReportTotal']   = $this->Dashboard->getThisMonthReports();
+        $data['thisMonthReportChart']   = $this->Dashboard->getThisMonthReportsChart();
+        $data['thisYearReportTotal']    = $this->Dashboard->getThisYearReports();
+        $data['thisYearReportChart']    = $this->Dashboard->getThisYearReportsChart();
+
         $data['todayReports']           = $this->Dashboard->getTodayReports();
+        $data['avgCanceledReports']     = $this->Dashboard->getAvgCanceledReports();
+        $data['avgCanceledReportsChart']     = $this->Dashboard->getAvgCanceledReportsChart();
         
         // print_r($data['todayReports']);
         $this->template->view('dashboard', $data);

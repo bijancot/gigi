@@ -9,7 +9,17 @@ img {
     width: auto;
     height: auto;
 }
-#thismonthReportChart {
+#thisMonthReportChart {
+    width: calc(100% + 51px);
+    height: 100px;
+    margin: 20px -26px -27px -25px;
+}
+#thisYearReportChart {
+    width: calc(100% + 51px);
+    height: 100px;
+    margin: 20px -26px -27px -25px;
+}
+#canceledReportChart {
     width: calc(100% + 51px);
     height: 100px;
     margin: 20px -26px -27px -25px;

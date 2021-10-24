@@ -1,3 +1,29 @@
+<?php 
+    $day = "";
+    $total = null;
+    foreach ($thisMonthReportChart as $item) {
+        $temp_day = $item->day;
+        $day .= "'Day $temp_day'" . ", ";
+        $temp_total = $item->total;
+        $total .= "$temp_total" . ", ";
+    }
+    $month = "";
+    $year_total = null;
+    foreach ($thisYearReportChart as $item) {
+        $temp_month = $item->month;
+        $month .= "'$temp_month'" . ", ";
+        $temp_total = $item->total;
+        $year_total .= "$temp_total" . ", ";
+    }
+    $cancelDay = "";
+    $cancel_total = null;
+    foreach ($avgCanceledReportsChart as $item) {
+        $temp_cancelDay = $item->day;
+        $cancelDay .= "'Day $temp_cancelDay'" . ", ";
+        $temp_cancel = $item->total;
+        $cancel_total .= "$temp_cancel" . ", ";
+    }
+?>
                     <div class="main-wrapper">
                         <div class="row stats-row">
                             <div class="col-lg-3 col-md-12">
@@ -54,17 +80,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card savings-card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Reports<span class="card-title-helper">30 Days</span></h5>
-                                        <div class="savings-stats">
-                                            <h5><?= empty($thisMonthReportTotal->total) ? "0" : number_format($thisMonthReportTotal->total) ?></h5>
-                                            <span>Total reports for this month</span>
-                                        </div>
-                                        <div id="thismonthReportChart"></div>
-                                    </div>
-                                </div>
+                            <div class="col-lg-3">
                                 <div class="card top-products">
                                     <div class="card-body">
                                         <h5 class="card-title">Latest Reports<span class="card-title-helper">Today</span></h5>
@@ -89,43 +105,43 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-9">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="visitors-stats">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="visitors-stats-info">
-                                                        <p>Total reports in the <?= date('Y') ?> period:</p>
-                                                        <h5>77,871</h5>
-                                                        <span>6-26 Apr</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div id="chart-visitors"></div>
+                                        <h5 class="card-title">Canceled Reports</h5>
+                                        <div class="savings-stats">
+                                            <h5>Day <?= empty($avgCanceledReports->avg) ? "0" : number_format($avgCanceledReports->avg) ?></h5>
+                                            <p>Average Users Canceled Reports.</p>
                                         </div>
+                                        <div id="canceledReportChart"></div>
                                     </div>
                                 </div>
-                                <div class="card">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card savings-card">
                                     <div class="card-body">
-                                        <div class="visitors-stats">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="visitors-stats-info">
-                                                        <p>Average reports in the <?= date('Y') ?> period:</p>
-                                                        <h5>77,871</h5>
-                                                        <span>6-26 Apr</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div id="chart-visitors"></div>
+                                        <h5 class="card-title">Monthly Reports<span class="card-title-helper"><?= date('t') ?> Days</span></h5>
+                                        <div class="savings-stats">
+                                            <h5><?= empty($thisMonthReportTotal->total) ? "0" : number_format($thisMonthReportTotal->total) ?></h5>
+                                            <span>Total Reports for <?= date('F') ?>:</span>
                                         </div>
+                                        <div id="thisMonthReportChart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card savings-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Yearly Reports</h5>
+                                        <div class="savings-stats">
+                                            <h5><?= empty($thisYearReportTotal->total) ? "0" : number_format($thisYearReportTotal->total) ?></h5>
+                                            <p>Total Reports in the <?= date('Y') ?> period:</p>
+                                        </div>
+                                        <div id="thisYearReportChart"></div>
                                     </div>
                                 </div>
                             </div>
@@ -133,25 +149,206 @@
                     </div>
 <script>
     $(document).ready(function() {
+        // Canceled Report
+        var options = {
+             series: [{
+                 name: "Total",
+                 data: [<?= $cancel_total ?>]
+             }],
+             chart: {
+                 type: 'area',
+                 height: 270,
+                 zoom: {
+                    autoScaleYaxis: true
+                    },
+                 toolbar: {
+                     show: false
+                 }
+             },
+             dataLabels: {
+                 enabled: false
+             },
+             markers: {
+                size: 0,
+                style: 'hollow'
+            },
+             xaxis: {
+                 categories: [<?= $cancelDay ?>],
+                 tickAmount: 6,
+                 axisBorder: {
+                    show: true,
+                    color: 'transparent'
+                    },
+                    labels: {
+                    style: {
+                        colors: 'rgba(94, 96, 110, .5)'
+                    }
+                }
+             },
+             stroke: {
+                curve: 'smooth',
+                width: 3,
+                color: '#000'
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 0,
+                    opacityFrom: .6,
+                    opacityTo: .2,
+                    colors: ['#5FD0A5'],
+                    stops: [0, 100]
+                }
+            },
+            grid: {
+                borderColor: 'rgba(94, 96, 110, .5)',
+                strokeDashArray: 4
+            },
+             colors:['#5FD0A5'],
+             yaxis: {
+                 labels: {
+                     formatter: function(val) {
+                         return val.toFixed(0)
+                     }
+                 }
+             }
+         };
+         var chart = new ApexCharts(document.querySelector("#canceledReportChart"), options);
+         chart.render();
 
-    var DrawSparkline = function() {
-        $('#thismonthReportChart').sparkline([0, 34, 43, 35, 44, 45, 56, 37, 58], {
-            type: 'line',
-            width: '100%',
-            height: '100',
-            chartRangeMax: 50,
-            lineColor: '#f78387',
-            fillColor: 'rgba(247, 131, 135,.2)',
-            highlightLineColor: 'transparent',
-            highlightSpotColor: 'transparent',
-            maxSpotColor: 'transparent',
-            spotColor: 'transparent',
-            minSpotColor: 'transparent',
-            lineWidth: 3
-        });
-    };
+        // Monthly Report
+        var options = {
+             series: [{
+                 name: "Total",
+                 data: [<?= $total ?>]
+             }],
+             chart: {
+                 type: 'area',
+                 height: 300,
+                 zoom: {
+                    autoScaleYaxis: true
+                    },
+                 toolbar: {
+                     show: false
+                 }
+             },
+             dataLabels: {
+                 enabled: false
+             },
+             markers: {
+                size: 0,
+                style: 'hollow'
+            },
+             xaxis: {
+                 categories: [<?= $day ?>],
+                 tickAmount: 6,
+                 axisBorder: {
+                    show: true,
+                    color: 'transparent'
+                    },
+                    labels: {
+                    style: {
+                        colors: 'rgba(94, 96, 110, .5)'
+                    }
+                },
+             },
+             stroke: {
+                curve: 'smooth',
+                width: 3,
+                color: '#000'
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 0,
+                    opacityFrom: .6,
+                    opacityTo: .2,
+                    colors: ['#5FD0A5'],
+                    stops: [0, 100]
+                }
+            },
+            grid: {
+                borderColor: 'rgba(94, 96, 110, .5)',
+                strokeDashArray: 4
+            },
+             colors:['#5FD0A5'],
+             yaxis: {
+                 labels: {
+                     formatter: function(val) {
+                         return val.toFixed(0)
+                     }
+                 }
+             }
+         };
+         var chart = new ApexCharts(document.querySelector("#thisMonthReportChart"), options);
+         chart.render();
 
-    DrawSparkline();
+         // This Year Report
+         var options = {
+             series: [{
+                 name: "Total",
+                 data: [<?= $year_total ?>]
+             }],
+             chart: {
+                 type: 'area',
+                 height: 300,
+                 zoom: {
+                    autoScaleYaxis: true
+                    },
+                 toolbar: {
+                     show: false
+                 }
+             },
+             dataLabels: {
+                 enabled: false
+             },
+             markers: {
+                size: 0,
+                style: 'hollow'
+            },
+             xaxis: {
+                 categories: [<?= $month ?>],
+                 tickAmount: 6,
+                 axisBorder: {
+                    show: true,
+                    color: 'transparent'
+                    },
+                    labels: {
+                    style: {
+                        colors: 'rgba(94, 96, 110, .5)'
+                    }
+                }
+             },
+             stroke: {
+                curve: 'smooth',
+                width: 3,
+                color: '#000'
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 0,
+                    opacityFrom: .6,
+                    opacityTo: .2,
+                    colors: ['#5FD0A5'],
+                    stops: [0, 100]
+                }
+            },
+            grid: {
+                borderColor: 'rgba(94, 96, 110, .5)',
+                strokeDashArray: 4
+            },
+             colors:['#5FD0A5'],
+             yaxis: {
+                 labels: {
+                     formatter: function(val) {
+                         return val.toFixed(0)
+                     }
+                 }
+             }
+         };
+         var chart = new ApexCharts(document.querySelector("#thisYearReportChart"), options);
+         chart.render();
 
     });
 </script>
