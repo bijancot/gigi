@@ -49,7 +49,7 @@
                                             <td>'.strtoupper($item->status).'</td>
                                             <td>'.$created_at.'</td>
                                             <td>
-                                                <a href="" class="mdImage" data-image="'.base_url($item->image).'" data-toggle="modal" data-target="#mdImage"><i class="material-icons-outlined">visibility</i></a>
+                                                <a href="" class="mdImage" data-image="'.$item->image.'" data-toggle="modal" data-target="#mdImage"><i class="material-icons-outlined">visibility</i></a>
                                             </td>
                                         </tr>
                                     ';
