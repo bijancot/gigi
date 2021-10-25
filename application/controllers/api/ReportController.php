@@ -57,10 +57,10 @@
             if ($data['report']) {
                 $this->response([
                     'status' => true, 
-                    'message' => 'Get Report successfully',
+                    'message' => 'Get Report berhasil',
                     'data' => $data], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Get Report failed'], 200);
+                $this->response(['status' => false, 'message' => 'Get Report gagal'], 200);
             }
         }
         public function checkReport($email, $report_id) {
@@ -149,9 +149,9 @@
             if ($result) {
                 $this->response([
                     'status' => true, 
-                    'message' => 'Add Report successfully'], 200);
+                    'message' => 'Tambah Report berhasil'], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Add Report failed'], 200);
+                $this->response(['status' => false, 'message' => 'Tambah Report gagal'], 200);
             }
         }
         function upload_image($id, $category, $status){

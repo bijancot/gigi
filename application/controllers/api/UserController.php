@@ -19,9 +19,9 @@
             );
             $result = $this->User->insertUser($arr);
             if ($result) {
-                $this->response(['status' => true, 'message' => 'Register successfully'], 200);
+                $this->response(['status' => true, 'message' => 'Register berhasil'], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Register failed, email is already exists'], 200);     
+                $this->response(['status' => false, 'message' => 'Register gagal, email sudah ada'], 200);     
             }
         }
         public function login_post() {
@@ -51,10 +51,10 @@
             if ($data['user']) {
                 $this->response([
                     'status' => true, 
-                    'message' => 'Login successfully',
+                    'message' => 'Login berhasil',
                     'data' => $data], 200);
             } else {
-                $this->response(['status' => false, 'message' => 'Login failed, email or password is incorrect'], 200);
+                $this->response(['status' => false, 'message' => 'Login gagal, email atau password salah'], 200);
             }
         }
         public function forgotPassword_post() {
@@ -69,11 +69,11 @@
             );
             $result = $this->User->forgotPassword($arr);
             if ($result == 2) {
-                $this->response(['status' => true, 'message' => 'Password reset successfully'], 200);
+                $this->response(['status' => true, 'message' => 'Password reset berhasil'], 200);
             } else if ($result == 0){
-                $this->response(['status' => false, 'message' => "Old Password doesn't match"], 200);     
+                $this->response(['status' => false, 'message' => "Password lama tidak cocok"], 200);     
             } else if ($result == 1) {
-                $this->response(['status' => false, 'message' => "Email doesn't match"], 200);
+                $this->response(['status' => false, 'message' => "Email tidak cocok"], 200);
             }
         }
     }
