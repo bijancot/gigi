@@ -42,4 +42,10 @@
                 return 1;
             }
         }
+        public function forgot($param) {
+            $this->db->select('email, password');
+            $this->db->from('user');
+            $this->db->where('email', $param);
+            return $this->db->get()->row();
+        }
     }

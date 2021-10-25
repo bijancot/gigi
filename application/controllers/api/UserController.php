@@ -76,4 +76,19 @@
                 $this->response(['status' => false, 'message' => "Email tidak cocok"], 200);
             }
         }
+        public function forgotPasswordReceive_post() {
+            $email = $this->post('email');
+            $result = $this->User->forgot($email);
+            if ($result) {
+                $to = $email;
+                $subject = "Password Reset";
+                $txt = "Link untuk mengubah password ".base_url('user/forgot-password/'.$result->password);
+                $headers = "From: password@surveygigi.com";
+    
+                mail($to,$subject,$txt,$headers);
+                $this->response(['status' => true, 'message' => "Cek email untuk mengubah password"], 200);
+            } else {
+                $this->response(['status' => false, 'message' => "Email tidak ada"], 200);
+            }
+        }
     }
