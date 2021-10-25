@@ -46,8 +46,13 @@
                                             <td>'.$item->day.'</td>
                                             <td>'.$created_at.'</td>
                                             <td>'.$status.'</td>
-                                            <td>
-                                                <a href="'.site_url('report/detail/'.$item->report_id).'"><i class="material-icons-outlined">info</i></a>
+                                            <td>';
+                                    if ($item->created_at) {
+                                        echo '<a href="'.site_url('report/detail/'.$item->report_id).'"><i class="material-icons-outlined">info</i></a>';
+                                    } else {
+                                        echo '<a style="color: gray;"><i class="material-icons-outlined">info</i></a>';
+                                    }
+                                    echo '
                                                 <a href="" class="mdCancel" data-id="'.$item->report_id.'" data-toggle="modal" data-target="#mdCancel"><i class="material-icons-outlined">cancel</i></a>
                                             </td>
                                         </tr>

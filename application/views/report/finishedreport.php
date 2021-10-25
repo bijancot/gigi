@@ -42,8 +42,13 @@
                                             <td>'.$item->day.'</td>
                                             <td>'.$created_at.'</td>
                                             <td>'.$status.'</td>
-                                            <td>
-                                            <a href="'.site_url('report/detail/'.$item->report_id).'"><i class="material-icons-outlined">info</i></a>
+                                            <td>';
+                                    if ($item->created_at) {
+                                        echo '<a href="'.site_url('report/detail/'.$item->report_id).'"><i class="material-icons-outlined">info</i></a>';
+                                    } else {
+                                        echo '<a style="color: gray;"><i class="material-icons-outlined">info</i></a>';
+                                    }
+                                    echo '
                                             </td>
                                         </tr>
                                     ';
