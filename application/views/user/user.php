@@ -14,12 +14,11 @@
                     <table id="user" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Email</th>
+                                <th>NISN</th>
                                 <th>Name</th>
                                 <th>Gender</th>
                                 <th>Birth Date</th>
                                 <th>Phone Number</th>
-                                <th>School Name</th>
                                 <th>School Class</th>
                             </tr>
                         </thead>
@@ -33,12 +32,11 @@
                                     }
                                     echo '
                                         <tr>
-                                            <td>'.$item->email.'</td>
+                                            <td>'.$item->nisn.'</td>
                                             <td>'.$item->name.'</td>
                                             <td>'.$gender.'</td>
                                             <td>'.date("d F Y", strtotime($item->birth_date)).'</td>
                                             <td>'.$item->phone_number.'</td>
-                                            <td>'.$item->school_name.'</td>
                                             <td>'.$item->school_class.'</td>
                                         </tr>
                                     ';
@@ -47,12 +45,11 @@
                         </tbody>
                         <tfoot>
                             <tr>    
-                                <th>Email</th>
+                                <th>NISN</th>
                                 <th>Name</th>
                                 <th>Gender</th>
                                 <th>Birth Date</th>
                                 <th>Phone Number</th>
-                                <th>School Name</th>
                                 <th>School Class</th>
                             </tr>
                         </tfoot>

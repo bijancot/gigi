@@ -4,7 +4,7 @@
             return $this->db->get('user')->result();
         }
         public function insertUser($param){
-            $this->db->where('email', $param['email']);
+            $this->db->where('nisn', $param['nisn']);
             $this->db->from('user');
             $count = $this->db->count_all_results();
 
@@ -16,19 +16,19 @@
             }
         }
         public function checkUser($param) {		
-            $this->db->select('email, name, gender, birth_date, phone_number, school_name, school_class');
+            $this->db->select('nisn, name, gender, birth_date, phone_number, school_class');
             return $this->db->get_where('user', $param)->row();
         }	
         public function forgotPassword($param) {
-            $this->db->where('email', $param['email']);
+            $this->db->where('nisn', $param['nisn']);
             $count = $this->db->get('user')->num_rows();
 
             if($count > 0) {
-                $this->db->where('email', $param['email']);
+                $this->db->where('nisn', $param['nisn']);
                 $this->db->where('password', $param['password']);
                 $count_pass = $this->db->get('user')->num_rows();
                 if ($count_pass > 0) {
-                    $this->db->where('email', $param['email']);
+                    $this->db->where('nisn', $param['nisn']);
                     $this->db->where('password', $param['password']);
                     $data = array(
                         'password' => $param['newpassword']
@@ -41,11 +41,5 @@
             } else {
                 return 1;
             }
-        }
-        public function forgot($param) {
-            $this->db->select('email, password');
-            $this->db->from('user');
-            $this->db->where('email', $param);
-            return $this->db->get()->row();
         }
     }

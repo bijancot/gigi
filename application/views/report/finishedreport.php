@@ -14,7 +14,7 @@
                     <table id="report" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Email</th>
+                                <th>NISN</th>
                                 <th>Name</th>
                                 <th>Day</th>
                                 <th>Latest Report</th>
@@ -37,7 +37,7 @@
                                     }
                                     echo '
                                         <tr>
-                                            <td>'.$item->email.'</td>
+                                            <td>'.$item->nisn.'</td>
                                             <td>'.$item->name.'</td>
                                             <td>'.$item->day.'</td>
                                             <td>'.$created_at.'</td>
@@ -57,7 +57,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Email</th>
+                                <th>NISN</th>
                                 <th>Name</th>
                                 <th>Day</th>
                                 <th>Latest Report</th>

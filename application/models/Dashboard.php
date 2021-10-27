@@ -47,11 +47,11 @@ class Dashboard extends CI_Model {
     public function getTodayReports() {
         $this->db->select("u.name, r.day, rd.category");
         $this->db->from('user u');
-        $this->db->join('report r', 'r.user_email = u.email', 'left');
+        $this->db->join('report r', 'r.user_nisn = u.nisn', 'left');
         $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
         $this->db->where('DATE(rd.created_at)', date('Y-m-d'));
         $this->db->group_by('rd.category');
-        $this->db->group_by('u.email');
+        $this->db->group_by('u.nisn');
         $this->db->limit(6);
         return $this->db->get()->result();
     }

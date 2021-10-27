@@ -69,8 +69,6 @@ $route['report/detail/(:any)']          = 'ReportController/detailReport/$1';
 $route['api/user/register']             = 'api/UserController/register';
 $route['api/user/login']                = 'api/UserController/login';
 $route['api/user/forgot']               = 'api/UserController/forgotPassword';
-$route['api/user/forgot-password']      = 'api/UserController/forgotPasswordReceive';
-$route['user/forgot-password/(:any)']   = 'api/UserController/forgotPasswordSend/$1';
 
 // Report
 $route['api/report']                    = 'api/ReportController/report';

@@ -1,6 +1,6 @@
 <?php 
     $day = "";
-    $total = null;
+    $total = "";
     foreach ($thisMonthReportChart as $item) {
         $temp_day = $item->day;
         $day .= "'Day $temp_day'" . ", ";
@@ -8,7 +8,7 @@
         $total .= "$temp_total" . ", ";
     }
     $month = "";
-    $year_total = null;
+    $year_total = "";
     foreach ($thisYearReportChart as $item) {
         $temp_month = $item->month;
         $month .= "'$temp_month'" . ", ";
@@ -16,7 +16,7 @@
         $year_total .= "$temp_total" . ", ";
     }
     $cancelDay = "";
-    $cancel_total = null;
+    $cancel_total = "";
     foreach ($avgCanceledReportsChart as $item) {
         $temp_cancelDay = $item->day;
         $cancelDay .= "'Day $temp_cancelDay'" . ", ";

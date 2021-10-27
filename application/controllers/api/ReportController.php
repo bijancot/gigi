@@ -7,10 +7,10 @@
         }
         // Dashboard aplikasi
         public function report_post() {
-            $email = $this->post('email');
-            $last_open = $this->Report->checkLastOpen($email);
+            $nisn = $this->post('nisn');
+            $last_open = $this->Report->checkLastOpen($nisn);
             if ($last_open == null) {
-                $this->checkReport($email, null);
+                $this->checkReport($nisn, null);
             } else {
                 if ($last_open->date != date("Y-m-d") || $last_open->day == 21) {
                     $today = date("Y-m-d h:i:s");
@@ -19,12 +19,12 @@
                     );
                     $this->Report->changeLastOpen($last_open->report_id, $arr);
                     if ($last_open->status != 'finished') {
-                        $this->checkReport($email, $last_open->report_id);
+                        $this->checkReport($nisn, $last_open->report_id);
                     }
                 } 
             }
             $arr = array(
-                'r.user_email' => $email,
+                'r.user_nisn' => $nisn,
                 'r.status !=' => 'canceled'
             );
             $temp = $this->Report->getDailyReport($arr);
@@ -63,8 +63,8 @@
                 $this->response(['status' => false, 'message' => 'Get Report gagal'], 200);
             }
         }
-        public function checkReport($email, $report_id) {
-            $temp = $this->Report->getYesterdayReport($email);
+        public function checkReport($nisn, $report_id) {
+            $temp = $this->Report->getYesterdayReport($nisn);
             if ($temp->entry < 4) {
                 if ($report_id != null) {
                     $update = array(
@@ -74,14 +74,14 @@
                     $this->Report->updateStatusReport($report_id, $update);
                 }
                 $insert = array(
-                    'user_email' => $email,
+                    'user_nisn' => $nisn,
                     'status' => 'ongoing'
                 );
                 $this->Report->insertReport($insert);
             } else {
                 if ($temp->day == 21) {
                     $arr = array(
-                        'r.user_email' => $email
+                        'r.user_nisn' => $nisn
                     );
                     $tempToday = $this->Report->getDailyReport($arr);
                     if ($tempToday->entry < 4) {
@@ -103,37 +103,6 @@
                 }
             }
         }
-        // // Check hari
-        // public function checkReport_post() {
-        //     $email = $this->post('email');
-        //     $temp = $this->Report->checkReport($email);
-        //     // if ($temp->entry == 4) {
-        //     //     $day = array(
-        //     //         'day' => $temp->day + 1
-        //     //     );
-        //     // } else {
-        //     //     $day = array(
-        //     //         'day' => 1
-        //     //     );
-        //     // }
-        //     if ($temp->entry != 4) {
-        //         $day = array(
-        //             'day' => 1
-        //         );
-        //     } else {
-        //         $day = array(
-        //             'day' => $temp->day + 1
-        //         );
-        //     }
-        //     if ($temp->status == 'canceled') {
-        //         $insert = array(
-        //             'user_email' => $email,
-        //             'status' => 'ongoing'
-        //         );
-        //         $this->Report->insertReport($insert);
-        //     }
-        //     $this->Report->changeDayReport($temp->report_id, $day);
-        // }
         public function reportAdd_post() {
             $report_id = $this->post('report_id');
             $category = $this->post('category');
