@@ -42,4 +42,20 @@
                 return 1;
             }
         }
+        public function updatePassword($param, $data) {
+            $this->db->where('nisn', $param)->update('user', $data);
+        }
+        public function updateUser($param, $data){
+            $this->db->where('nisn', $param);
+            $this->db->from('user');
+            $count = $this->db->count_all_results();
+
+            if($count != 0) {
+                $this->db->where('nisn', $param);
+                $this->db->update('user', $data);
+                return true;
+            } else {
+                return false;
+            }
+        }
     }

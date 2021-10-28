@@ -36,7 +36,6 @@ class ReportController extends CI_Controller{
             'status' => 'canceled'
         );
         $this->Report->update($param);
-        $this->session->set_flashdata('succ', 'Successfully changed the status on the student ', 1);
         redirect('report');
     }
     public function detailReport($report_id){

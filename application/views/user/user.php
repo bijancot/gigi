@@ -20,6 +20,7 @@
                                 <th>Birth Date</th>
                                 <th>Phone Number</th>
                                 <th>School Class</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,9 @@
                                             <td>'.date("d F Y", strtotime($item->birth_date)).'</td>
                                             <td>'.$item->phone_number.'</td>
                                             <td>'.$item->school_class.'</td>
+                                            <td>
+                                                <a href="" class="mdReset" data-id="'.$item->nisn.'" data-toggle="modal" data-target="#mdReset"><i class="material-icons-outlined">restart_alt</i></a>
+                                            </td>
                                         </tr>
                                     ';
                                 }
@@ -51,6 +55,7 @@
                                 <th>Birth Date</th>
                                 <th>Phone Number</th>
                                 <th>School Class</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -59,8 +64,34 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="mdReset" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <form action="<?= site_url('user/resetPassword')?>" method="post">
+            <div class="modal-body">
+                    Reset user's <code>password</code>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="mdID" class="form-control" name="nisn">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function() {
         $('#user').DataTable();
-    });
+    })
+    $('#user tbody').on('click', '.mdReset', function(){
+        const id = $(this).data('id')
+        $('#mdID').val(id)
+    })
 </script>

@@ -75,4 +75,20 @@
                 $this->response(['status' => false, 'message' => "NISN tidak cocok"], 200);
             }
         }
+        public function updateProfile_post() {
+            $nisn = $this->post('nisn');
+            $arr = array(
+                'name' => $this->post('name'),
+                'gender' => $this->post('gender'),
+                'birth_date' => date_format(date_create($this->post('birth_date')), "Y-m-d"),
+                'phone_number' => $this->post('phone_number'),
+                'school_class' => $this->post('school_class')
+            );
+            $result = $this->User->updateUser($nisn, $arr);
+            if ($result) {
+                $this->response(['status' => true, 'message' => 'Update profil berhasil'], 200);
+            } else {
+                $this->response(['status' => false, 'message' => 'Update profil gagal'], 200);     
+            }
+        }
     }

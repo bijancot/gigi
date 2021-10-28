@@ -16,4 +16,12 @@ class UserController extends CI_Controller{
 
         $this->template->view('user/user', $data);
     }
+    public function resetPassword() {
+        $nisn = $this->input->post('nisn');
+        $data = array(
+            'password' => md5('password_baru_'.$nisn)
+        );
+        $this->User->updatePassword($nisn, $data);
+        redirect('user');
+    }
 }
