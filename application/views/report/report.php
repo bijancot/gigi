@@ -53,7 +53,7 @@
                                         echo '<a style="color: gray;"><i class="material-icons-outlined">info</i></a>';
                                     }
                                     echo '
-                                                <a href="" class="mdCancel" data-id="'.$item->report_id.'" data-toggle="modal" data-target="#mdCancel"><i class="material-icons-outlined">cancel</i></a>
+                                                <a href="" class="mdCancel" data-id="'.$item->report_id.'" data-name="'.$item->name.'" data-toggle="modal" data-target="#mdCancel"><i class="material-icons-outlined">cancel</i></a>
                                             </td>
                                         </tr>
                                     ';
@@ -104,6 +104,8 @@
     })
     $('#report tbody').on('click', '.mdCancel', function(){
         const id = $(this).data('id')
+        const name = $(this).data('name')
         $('#mdID').val(id)
+        $("#mdCancel .modal-body").html('Make <mark>' + name + '</mark>\'s report status to <code>canceled.</code>');
     })
 </script>

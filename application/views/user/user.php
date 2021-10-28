@@ -40,7 +40,7 @@
                                             <td>'.$item->phone_number.'</td>
                                             <td>'.$item->school_class.'</td>
                                             <td>
-                                                <a href="" class="mdReset" data-id="'.$item->nisn.'" data-toggle="modal" data-target="#mdReset"><i class="material-icons-outlined">restart_alt</i></a>
+                                                <a href="" class="mdReset" data-id="'.$item->nisn.'" data-name="'.$item->name.'" data-toggle="modal" data-target="#mdReset"><i class="material-icons-outlined">restart_alt</i></a>
                                             </td>
                                         </tr>
                                     ';
@@ -92,6 +92,8 @@
     })
     $('#user tbody').on('click', '.mdReset', function(){
         const id = $(this).data('id')
+        const name = $(this).data('name')
         $('#mdID').val(id)
+        $("#mdReset .modal-body").html('Reset <mark>' + name + '</mark>\'s <code>password</code>');
     })
 </script>
