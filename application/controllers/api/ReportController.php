@@ -104,23 +104,32 @@
             }
         }
         public function reportAdd_post() {
-            $report_id = $this->post('report_id');
-            $category = $this->post('category');
-            $status = $this->post('status');
-            $image = $this->upload_image($report_id, $category, $status);
-            $arr = array(
-                'report_id' => $report_id,
-                'image' => $image,
-                'category' => $category,
-                'status' => $status,
-            );
-            $result = $this->Report->addReport($arr);
-            if ($result) {
-                $this->response([
-                    'status' => true, 
-                    'message' => 'Tambah Report berhasil'], 200);
+            $current_time = date("H");
+            if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 21) {
+                $report_id = $this->post('report_id');
+                $category = $this->post('category');
+                $status = $this->post('status');
+                $image = $this->upload_image($report_id, $category, $status);
+                $arr = array(
+                    'report_id' => $report_id,
+                    'image' => $image,
+                    'category' => $category,
+                    'status' => $status,
+                );
+                $result = $this->Report->addReport($arr);
+                if ($result) {
+                    $this->response([
+                        'status' => true, 
+                        'message' => 'Tambah Report berhasil'], 200);
+                } else {
+                    $this->response(['status' => false, 'message' => 'Tambah Report gagal'], 200);
+                }
             } else {
-                $this->response(['status' => false, 'message' => 'Tambah Report gagal'], 200);
+                if ($current_time < 17) {
+                    $this->response(['status' => false, 'message' => 'Waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
+                } else {
+                    $this->response(['status' => false, 'message' => 'Waktu upload malam pukul 17:00 sampai 21:00 WIB'], 200);
+                }
             }
         }
         function upload_image($id, $category, $status){
