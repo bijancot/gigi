@@ -16,7 +16,7 @@
             }
         }
         public function checkUser($param) {		
-            $this->db->select('nisn, name, gender, birth_date, phone_number, school_class');
+            $this->db->select('nisn, name, gender, DATE_FORMAT(birth_date, "%d %M %Y") as birth_date, phone_number, school_class');
             return $this->db->get_where('user', $param)->row();
         }	
         public function forgotPassword($param) {
