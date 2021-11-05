@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-title">
-                <h2 class="page-desc">List of Ongoing Reports</h2>
+                <h2 class="page-desc">List of <span class="badge badge-info">ONGOING</span> Reports</h2>
             </div>
         </div>
     </div>
@@ -18,22 +18,12 @@
                                 <th>Name</th>
                                 <th>Day</th>
                                 <th>Latest Report</th>
-                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
                                 foreach($reports as $item) {
-                                    if ($item->status == 'ongoing') {
-                                        $status = '<span class="badge badge-info">ONGOING</span>';
-                                    } else if ($item->status == 'canceled') {
-                                        $status = '<span class="badge badge-warning">CANCELED</span>';
-                                    } else if ($item->status == 'finished') {
-                                        $status = '<span class="badge badge-success">FINISHED</span>';
-                                    } else {
-                                        $status = '<span class="badge badge-secondary">NULL</span>';
-                                    }
                                     if ($item->created_at) {
                                         $created_at = date("d F Y", strtotime($item->created_at));
                                     } else {
@@ -45,7 +35,6 @@
                                             <td>'.$item->name.'</td>
                                             <td>'.$item->day.'</td>
                                             <td>'.$created_at.'</td>
-                                            <td>'.$status.'</td>
                                             <td>';
                                     if ($item->created_at) {
                                         echo '<a href="'.site_url('report/detail/'.$item->report_id).'"><i class="material-icons-outlined">info</i></a>';
@@ -66,7 +55,6 @@
                                 <th>Name</th>
                                 <th>Day</th>
                                 <th>Latest Report</th>
-                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

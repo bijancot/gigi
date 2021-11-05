@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-title">
-                <h2 class="page-desc">List of users</h2>
+                <h2 class="page-desc">List of Users</h2>
             </div>
         </div>
     </div>

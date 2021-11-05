@@ -30,6 +30,7 @@ class Dashboard extends CI_Model {
         $this->db->select("day(created_at) as day, count(*) total");
         $this->db->where('MONTH(created_at) = MONTH(CURRENT_DATE)');
         $this->db->group_by('day(created_at)');
+        $this->db->order_by('day(created_at) ASC');
         return $this->db->from('report_detail')->get()->result();
     }
     public function getThisYearReports() {
@@ -41,6 +42,7 @@ class Dashboard extends CI_Model {
         $this->db->select("monthname(created_at) as month, count(*) total");
         $this->db->where('YEAR(created_at) = YEAR(CURRENT_DATE)');
         $this->db->group_by('monthname(created_at)');
+        $this->db->order_by('monthname(created_at) DESC');
         return $this->db->from('report_detail')->get()->result();
     }
 
@@ -65,6 +67,7 @@ class Dashboard extends CI_Model {
         $this->db->select("day, count(*) as total");
         $this->db->where('status', 'canceled');
         $this->db->group_by('day');
+        $this->db->order_by('day ASC');
         return $this->db->from('report')->get()->result();
     }
 }
