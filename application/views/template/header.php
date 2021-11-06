@@ -12,6 +12,8 @@
         <!-- Title -->
         <title><?= $title ?></title>
 
+        <link rel="icon" type="image/png" href="<?= site_url('assets/images/bmtc.png') ?>"/>
+
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
@@ -21,7 +23,7 @@
 
       
         <!-- Theme Styles -->
-        <link href="<?= base_url('assets/css/connect.min.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('assets/css/connect.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/dark_theme.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/custom.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/plugins/DataTables/datatables.min.css') ?>" rel="stylesheet">
@@ -39,7 +41,7 @@
         <div class="connect-container align-content-stretch d-flex flex-wrap">
             <div class="page-sidebar">
                 <div class="logo-box">
-                    <a href="<?= site_url('dashboard') ?>" class="logo-text">Survey Gigi</a>
+                    <a href="<?= site_url('dashboard') ?>" class="logo-text">BMTC</a>
                     <a href="#" id="sidebar-close"><i class="material-icons">close</i></a> 
                     <a href="#" id="sidebar-state"><i class="material-icons">adjust</i>
                     <i class="material-icons compact-sidebar-icon">panorama_fish_eye</i></a>
@@ -88,15 +90,15 @@
                                     <span><?= strtok($this->session->userdata('name'), " ") ?></span><i class="material-icons dropdown-icon">keyboard_arrow_down</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item"><?= $this->session->userdata('name') ?></a>
-                                    <a class="dropdown-item"><?= $this->session->userdata('email') ?></a>
+                                    <a href="#" class="dropdown-item"><?= $this->session->userdata('name') ?></a>
+                                    <a href="#" class="dropdown-item"><?= $this->session->userdata('email') ?></a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= site_url('logout') ?>">Log out</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link" id="dark-theme-toggle"><i class="material-icons-outlined">brightness_2</i><i class="material-icons">brightness_2</i></a>
-                            </li>
+                            </li> -->
                         </ul>
                     </nav>
                 </div>

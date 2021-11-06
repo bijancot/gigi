@@ -25,3 +25,7 @@ img {
     height: 100px;
     margin: 20px -26px -27px -25px;
 }
+.page-item.active .page-link {
+    z-index: 1;
+    background-color: #8661C1;
+}

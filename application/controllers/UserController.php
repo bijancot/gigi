@@ -10,7 +10,7 @@ class UserController extends CI_Controller{
     }
 
     public function index(){
-        $data['title']      = 'Survey Gigi - User';
+        $data['title']      = 'BMTC - User';
         $data['navActive']  = 'user';
         $data['users'] = $this->User->getAll();
 

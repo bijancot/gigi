@@ -2,7 +2,7 @@
 <div class="page-footer">
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="footer-text"><?= date('Y') ?> © Survey Gigi</span>
+                            <span class="footer-text"><?= date('Y') ?> © Brush My Teeth Challenge (BMTC)</span>
                         </div>
                     </div>
                 </div>

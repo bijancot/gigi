@@ -10,7 +10,9 @@
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         
         <!-- Title -->
-        <title>Survey Gigi</title>
+        <title>BMTC</title>
+
+        <link rel="icon" type="image/png" href="<?= site_url('assets/images/bmtc.png') ?>"/>
 
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet">
@@ -21,7 +23,7 @@
 
       
         <!-- Theme Styles -->
-        <link href="<?= base_url('assets/css/connect.min.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('assets/css/connect.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/dark_theme.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/custom.css') ?>" rel="stylesheet">
 
@@ -40,7 +42,7 @@
                         <div class="auth-form">
                             <div class="row">
                                 <div class="col">
-                                    <div class="logo-box"><a href="<?= site_url()?>" class="logo-text">Survey Gigi</a></div>
+                                    <div class="logo-box"><a href="<?= site_url()?>" class="logo-text">Brush My Teeth Challenge</a></div>
                                     <form action="<?= site_url('login')?>" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">

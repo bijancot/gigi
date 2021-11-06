@@ -126,9 +126,9 @@
                 }
             } else {
                 if ($current_time < 17) {
-                    $this->response(['status' => false, 'message' => 'Waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
+                    $this->response(['status' => false, 'message' => 'waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
                 } else {
-                    $this->response(['status' => false, 'message' => 'Waktu upload malam pukul 17:00 sampai 21:00 WIB'], 200);
+                    $this->response(['status' => false, 'message' => 'waktu upload malam pukul 17:00 sampai 21:00 WIB'], 200);
                 }
             }
         }

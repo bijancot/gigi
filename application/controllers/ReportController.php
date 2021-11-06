@@ -10,21 +10,21 @@ class ReportController extends CI_Controller{
     }
 
     public function index(){
-        $data['title']      = 'Survey Gigi - Report';
+        $data['title']      = 'BMTC - Report';
         $data['navActive']  = 'ongoing-report';
         $data['reports']    = $this->Report->getAll();
 
         $this->template->view('report/report', $data);
     }
     public function finished(){
-        $data['title']      = 'Survey Gigi - Report';
+        $data['title']      = 'BMTC - Report';
         $data['navActive']  = 'finished-report';
         $data['reports']    = $this->Report->getAllFinished();
 
         $this->template->view('report/finishedreport', $data);
     }
     public function canceled(){
-        $data['title']      = 'Survey Gigi - Report';
+        $data['title']      = 'BMTC - Report';
         $data['navActive']  = 'canceled-report';
         $data['reports']    = $this->Report->getAllCanceled();
 
@@ -39,7 +39,7 @@ class ReportController extends CI_Controller{
         redirect('report');
     }
     public function detailReport($report_id){
-        $data['title']      = 'Survey Gigi - Detail Report';
+        $data['title']      = 'BMTC - Detail Report';
         $data['navActive']  = 'detail-report';
         $data['reports']    = $this->Report->getID($report_id);
 

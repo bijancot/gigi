@@ -196,7 +196,7 @@
                     shadeIntensity: 0,
                     opacityFrom: .6,
                     opacityTo: .2,
-                    colors: ['#5FD0A5'],
+                    colors: ['#8661C1'],
                     stops: [0, 100]
                 }
             },
@@ -204,7 +204,7 @@
                 borderColor: 'rgba(94, 96, 110, .5)',
                 strokeDashArray: 4
             },
-             colors:['#5FD0A5'],
+             colors:['#8661C1'],
              yaxis: {
                  labels: {
                      formatter: function(val) {
@@ -263,7 +263,7 @@
                     shadeIntensity: 0,
                     opacityFrom: .6,
                     opacityTo: .2,
-                    colors: ['#5FD0A5'],
+                    colors: ['#8661C1'],
                     stops: [0, 100]
                 }
             },
@@ -271,7 +271,7 @@
                 borderColor: 'rgba(94, 96, 110, .5)',
                 strokeDashArray: 4
             },
-             colors:['#5FD0A5'],
+             colors:['#8661C1'],
              yaxis: {
                  labels: {
                      formatter: function(val) {
@@ -330,7 +330,7 @@
                     shadeIntensity: 0,
                     opacityFrom: .6,
                     opacityTo: .2,
-                    colors: ['#5FD0A5'],
+                    colors: ['#8661C1'],
                     stops: [0, 100]
                 }
             },
@@ -338,7 +338,7 @@
                 borderColor: 'rgba(94, 96, 110, .5)',
                 strokeDashArray: 4
             },
-             colors:['#5FD0A5'],
+             colors:['#8661C1'],
              yaxis: {
                  labels: {
                      formatter: function(val) {

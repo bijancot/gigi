@@ -10,7 +10,7 @@ class DashboardController extends CI_Controller{
     }
 
     public function index(){
-        $data['title']                  = 'Survey Gigi - Dashboard';
+        $data['title']                  = 'BMTC - Dashboard';
         $data['navActive']              = 'dashboard';
 
         $data['users']                  = $this->Dashboard->getUsers();
