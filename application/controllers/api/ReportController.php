@@ -68,7 +68,7 @@
             if ($temp->entry < 4) {
                 if ($report_id != null) {
                     $update = array(
-                        'day' => 1,
+                        // 'day' => 1,
                         'status' => 'canceled'
                     );
                     $this->Report->updateStatusReport($report_id, $update);
