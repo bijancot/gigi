@@ -10,7 +10,7 @@
             $nisn = $this->post('nisn');
             $last_open = $this->Report->checkLastOpen($nisn);
             if ($last_open == null) {
-                $this->checkReport($nisn, null);
+                $this->checkReport($nisn, null, null);
             } else {
                 if ($last_open->date != date("Y-m-d") || $last_open->day == 21) {
                     $today = date("Y-m-d h:i:s");
@@ -19,7 +19,7 @@
                     );
                     $this->Report->changeLastOpen($last_open->report_id, $arr);
                     if ($last_open->status != 'finished') {
-                        $this->checkReport($nisn, $last_open->report_id);
+                        $this->checkReport($nisn, $last_open->report_id, $last_open->day);
                     }
                 } 
             }
@@ -63,7 +63,7 @@
                 $this->response(['status' => false, 'message' => 'Get Report gagal'], 200);
             }
         }
-        public function checkReport($nisn, $report_id) {
+        public function checkReport($nisn, $report_id, $day) {
             $temp = $this->Report->getYesterdayReport($nisn);
             if ($temp->entry < 4) {
                 if ($report_id != null) {
@@ -73,11 +73,13 @@
                     );
                     $this->Report->updateStatusReport($report_id, $update);
                 }
-                $insert = array(
-                    'user_nisn' => $nisn,
-                    'status' => 'ongoing'
-                );
-                $this->Report->insertReport($insert);
+                if ($day != 1) {
+                    $insert = array(
+                        'user_nisn' => $nisn,
+                        'status' => 'ongoing'
+                    );
+                    $this->Report->insertReport($insert);
+                }
             } else {
                 if ($temp->day == 21) {
                     $arr = array(
