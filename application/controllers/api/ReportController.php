@@ -98,8 +98,7 @@
                     $this->Report->updateStatusReport($report_id, $update);
                 } else if ($temp->day < 21) {
                     $update = array(
-                        'day' => $temp->day + 1,
-                        'status' => 'ongoing'
+                        'day' => $temp->day + 1
                     );
                     $this->Report->updateStatusReport($report_id, $update);
                 }
