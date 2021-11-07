@@ -22,7 +22,7 @@ class AuthController extends CI_Controller {
             $user = $this->Admin->login($username, $password);
             if($user != false ){
                 $sessionData = array(
-                    'username'         => $user->username,
+                    'username'      => $user->username,
                     'name'          => $user->name,
                     'user_logged'   => TRUE
                 );

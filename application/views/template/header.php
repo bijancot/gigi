@@ -91,7 +91,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a href="#" class="dropdown-item"><?= $this->session->userdata('name') ?></a>
-                                    <a href="#" class="dropdown-item"><?= $this->session->userdata('email') ?></a>
+                                    <!-- <a href="#" class="dropdown-item"><?= $this->session->userdata('username') ?></a> -->
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= site_url('logout') ?>">Log out</a>
                                 </div>
