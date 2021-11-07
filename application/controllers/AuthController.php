@@ -13,16 +13,16 @@ class AuthController extends CI_Controller {
         }
     }
     public function login() {
-        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('username','Username','required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if($this->form_validation->run() == TRUE) {
-            $email = $this->input->post('email');
+            $username = $this->input->post('username');
             $password = md5($this->input->post('password'));
-            $user = $this->Admin->login($email, $password);
+            $user = $this->Admin->login($username, $password);
             if($user != false ){
                 $sessionData = array(
-                    'email'         => $user->email,
+                    'username'         => $user->username,
                     'name'          => $user->name,
                     'user_logged'   => TRUE
                 );
@@ -30,7 +30,7 @@ class AuthController extends CI_Controller {
                 $this->session->set_tempdata('auth_msg', 'Login Successfully', 3);
                 redirect('dashboard');
             } else {
-                $this->session->set_tempdata('auth_msg', 'Login Failed, Email or Password is incorrect!', 3);
+                $this->session->set_tempdata('auth_msg', 'Login Failed, Username or Password is incorrect!', 3);
                 redirect();
             }
         } else {

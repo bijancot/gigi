@@ -7,9 +7,9 @@ class Admin extends CI_Model{
         return $this->db->insert($this->_table, $data);
     }
 
-    function login($email, $password) {		
+    function login($username, $password) {		
 		$where = array(
-            'email' => $email,
+            'username' => $username,
             'password' => $password
             );
             $query = $this->db->get_where($this->_table, $where);

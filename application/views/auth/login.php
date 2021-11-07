@@ -45,7 +45,7 @@
                                     <div class="logo-box"><a href="<?= site_url()?>" class="logo-text">Brush My Teeth Challenge</a></div>
                                     <form action="<?= site_url('login')?>" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                            <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" id="password" name="password" placeholder="Password">
