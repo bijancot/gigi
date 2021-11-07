@@ -66,18 +66,20 @@
         public function checkReport($nisn, $report_id, $day) {
             $temp = $this->Report->getYesterdayReport($nisn);
             if ($temp->entry < 4) {
-                if ($report_id != null) {
-                    $update = array(
-                        // 'day' => 1,
-                        'status' => 'canceled'
+                if ($day != 1) {
+                    if ($report_id != null) {
+                        $update = array(
+                            // 'day' => 1,
+                            'status' => 'canceled'
+                        );
+                        $this->Report->updateStatusReport($report_id, $update);
+                    }
+                    $insert = array(
+                        'user_nisn' => $nisn,
+                        'status' => 'ongoing'
                     );
-                    $this->Report->updateStatusReport($report_id, $update);
+                    $this->Report->insertReport($insert);
                 }
-                $insert = array(
-                    'user_nisn' => $nisn,
-                    'status' => 'ongoing'
-                );
-                $this->Report->insertReport($insert);
             } else {
                 if ($temp->day == 21) {
                     $arr = array(
