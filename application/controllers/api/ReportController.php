@@ -73,13 +73,11 @@
                     );
                     $this->Report->updateStatusReport($report_id, $update);
                 }
-                if ($day != 1) {
-                    $insert = array(
-                        'user_nisn' => $nisn,
-                        'status' => 'ongoing'
-                    );
-                    $this->Report->insertReport($insert);
-                }
+                $insert = array(
+                    'user_nisn' => $nisn,
+                    'status' => 'ongoing'
+                );
+                $this->Report->insertReport($insert);
             } else {
                 if ($temp->day == 21) {
                     $arr = array(
