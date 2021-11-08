@@ -12,12 +12,12 @@
             if ($last_open == null) {
                 $this->checkReport($nisn, null, null);
             } else {
+                $today = date("Y-m-d h:i:s");
+                $arr = array(
+                    'last_open' => $today
+                );
+                $this->Report->changeLastOpen($last_open->report_id, $arr);
                 if ($last_open->date != date("Y-m-d") || $last_open->day == 21) {
-                    $today = date("Y-m-d h:i:s");
-                    $arr = array(
-                        'last_open' => $today
-                    );
-                    $this->Report->changeLastOpen($last_open->report_id, $arr);
                     if ($last_open->status != 'finished') {
                         $this->checkReport($nisn, $last_open->report_id, $last_open->day);
                     }
