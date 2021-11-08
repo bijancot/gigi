@@ -66,7 +66,7 @@
         public function checkReport($nisn, $report_id, $day) {
             $temp = $this->Report->getYesterdayReport($nisn);
             if ($temp->entry < 4) {
-                if ($day != 1) {
+                if ($day != 1 || $temp->entry > 0 && $day == 1) {
                     if ($report_id != null) {
                         $update = array(
                             // 'day' => 1,
