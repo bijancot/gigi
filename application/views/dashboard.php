@@ -110,8 +110,9 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Canceled Reports</h5>
                                         <div class="savings-stats">
-                                            <h5>Day <?= empty($avgCanceledReports->avg) ? "0" : number_format($avgCanceledReports->avg) ?></h5>
-                                            <p>Average Users Canceled Reports.</p>
+                                            <h5 style="display: inline-block;">Day <?= empty($avgCanceledReports->avg) ? "0" : number_format($avgCanceledReports->avg) ?> </h5>
+                                            <span>(<?= empty($avgCanceledReports->avg) ? "0" : $avgCanceledReports->avg ?>)</span>
+                                            <p>Average Users canceled their Reports.</p>
                                         </div>
                                         <div id="canceledReportChart"></div>
                                     </div>
@@ -125,7 +126,7 @@
                                         <h5 class="card-title">Monthly Reports<span class="card-title-helper"><?= date('t') ?> Days</span></h5>
                                         <div class="savings-stats">
                                             <h5><?= empty($thisMonthReportTotal->total) ? "0" : number_format($thisMonthReportTotal->total) ?></h5>
-                                            <span>Total Reports for <?= date('F') ?>:</span>
+                                            <span>Total Reports for <?= date('F') ?></span>
                                         </div>
                                         <div id="thisMonthReportChart"></div>
                                     </div>
@@ -139,7 +140,7 @@
                                         <h5 class="card-title">Yearly Reports</h5>
                                         <div class="savings-stats">
                                             <h5><?= empty($thisYearReportTotal->total) ? "0" : number_format($thisYearReportTotal->total) ?></h5>
-                                            <p>Total Reports in the <?= date('Y') ?> period:</p>
+                                            <p>Total Reports in the <?= date('Y') ?> period</p>
                                         </div>
                                         <div id="thisYearReportChart"></div>
                                     </div>

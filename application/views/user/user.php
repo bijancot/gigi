@@ -75,7 +75,7 @@
             </div>
             <form action="<?= site_url('user/resetPassword')?>" method="post">
             <div class="modal-body">
-                    Reset user's <code>password</code>
+                    <!-- insert text -->
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="mdID" class="form-control" name="nisn">
@@ -94,6 +94,6 @@
         const id = $(this).data('id')
         const name = $(this).data('name')
         $('#mdID').val(id)
-        $("#mdReset .modal-body").html('Reset <mark>' + name + '</mark>\'s <code>password</code>');
+        $("#mdReset .modal-body").html('<p style="margin-bottom: 5px">Reset <mark>' + name + '</mark>\'s <code>password</code> to:</p><p><code>password_baru_' + id + '</code></p>');
     })
 </script>
