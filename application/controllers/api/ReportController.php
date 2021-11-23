@@ -106,7 +106,7 @@
         }
         public function reportAdd_post() {
             // $current_time = date("H");
-            $current_time = 6;
+            $current_time = 18;
             if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 21) {
                 $report_id = $this->post('report_id');
                 $category = $this->post('category');
