@@ -65,44 +65,44 @@
         }
         public function checkReport($nisn, $report_id, $day) {
             $temp = $this->Report->getYesterdayReport($nisn);
-            if ($temp->entry < 4) {
-                if ($day != 1 || $temp->entry > 0 && $day == 1) {
-                    if ($report_id != null) {
-                        $update = array(
-                            // 'day' => 1,
-                            'status' => 'canceled'
-                        );
-                        $this->Report->updateStatusReport($report_id, $update);
-                    }
-                    $insert = array(
-                        'user_nisn' => $nisn,
-                        'status' => 'ongoing'
-                    );
-                    $this->Report->insertReport($insert);
-                }
-            } else {
-                if ($temp->day == 21) {
-                    $arr = array(
-                        'r.user_nisn' => $nisn
-                    );
-                    $tempToday = $this->Report->getDailyReport($arr);
-                    if ($tempToday->entry < 4) {
-                        $update = array(
-                            'status' => 'ongoing'
-                        );
-                    } else {
-                        $update = array(
-                            'status' => 'finished'
-                        );
-                    }
-                    $this->Report->updateStatusReport($report_id, $update);
-                } else if ($temp->day < 21) {
-                    $update = array(
-                        'day' => $temp->day + 1
-                    );
-                    $this->Report->updateStatusReport($report_id, $update);
-                }
-            }
+//             if ($temp->entry < 4) {
+//                 if ($day != 1 || $temp->entry > 0 && $day == 1) {
+//                     if ($report_id != null) {
+//                         $update = array(
+//                             // 'day' => 1,
+//                             'status' => 'canceled'
+//                         );
+//                         $this->Report->updateStatusReport($report_id, $update);
+//                     }
+//                     $insert = array(
+//                         'user_nisn' => $nisn,
+//                         'status' => 'ongoing'
+//                     );
+//                     $this->Report->insertReport($insert);
+//                 }
+//             } else {
+//                 if ($temp->day == 21) {
+//                     $arr = array(
+//                         'r.user_nisn' => $nisn
+//                     );
+//                     $tempToday = $this->Report->getDailyReport($arr);
+//                     if ($tempToday->entry < 4) {
+//                         $update = array(
+//                             'status' => 'ongoing'
+//                         );
+//                     } else {
+//                         $update = array(
+//                             'status' => 'finished'
+//                         );
+//                     }
+//                     $this->Report->updateStatusReport($report_id, $update);
+//                 } else if ($temp->day < 21) {
+//                     $update = array(
+//                         'day' => $temp->day + 1
+//                     );
+//                     $this->Report->updateStatusReport($report_id, $update);
+//                 }
+//             }
         }
         public function reportAdd_post() {
             $current_time = date("H");
