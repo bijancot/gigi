@@ -46,6 +46,10 @@
                         "status" => $res->status
                     );
                 } else {
+                    $arr = array(
+                        'r.user_nisn' => $nisn,
+                        'r.status !=' => 'canceled'
+                    );
                     $temp = $this->Report->getDailyReport($arr);
                     if ($temp->report_id == null) {
                         $first_time = $this->Report->getFirstTimeReport($arr);
