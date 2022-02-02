@@ -67,7 +67,7 @@
                 'r.user_nisn' => $nisn,
                 'r.status !=' => 'canceled'
             );
-            $temp = $this->Report->getYesterdayReport($nisn);
+            $temp = $this->Report->getYesterdayReport($arr);
             if ($temp->day == 21) {
                 $arr = array(
                     'r.user_nisn' => $nisn
