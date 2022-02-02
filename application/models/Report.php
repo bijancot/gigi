@@ -77,24 +77,8 @@
             $this->db->select('count(rd.created_at) as entry, r.report_id as report_id, r.day as day, r.status as status');
             $this->db->from('report r');
             $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
-            $this->db->where('r.user_nisn', $param);
-            $this->db->where('DATE(rd.created_at)', date('Y-m-d', strtotime('yesterday')));
-            return $this->db->get()->row();
-        }
-        public function getLatestReportDate($param) {
-            $this->db->select('count(rd.created_at) as entry, DATE(rd.created_at) as date');
-            $this->db->from('report r');
-            $this->db->join('report_detail rd', 'rd.report_id = r.report_id');
-            $this->db->where('r.user_nisn', $param);
-            $this->db->group_by('rd.created_at');
-            $this->db->order_by('rd.created_at DESC');
-            return $this->db->get()->row();
-        }
-        public function getLatestReport($param) {
-            $this->db->select('count(rd.created_at) as entry, r.report_id as report_id, r.day as day, r.status as status, MAX(rd.created_at) as date');
-            $this->db->from('report r');
-            $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
             $this->db->where($param);
+            $this->db->where('DATE(rd.created_at)', date('Y-m-d', strtotime('yesterday')));
             return $this->db->get()->row();
         }
         public function updateStatusReport($param, $data) {
