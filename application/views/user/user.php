@@ -40,7 +40,7 @@
                                             <td>'.$item->phone_number.'</td>
                                             <td>'.$item->school_class.'</td>
                                             <td>
-                                                <a href="" class="mdReset" data-id="'.$item->nisn.'" data-name="'.$item->name.'" data-toggle="modal" data-target="#mdReset"><i class="material-icons-outlined">restart_alt</i></a>
+                                                <a href="" class="mdReset" data-id="'.$item->nisn.'" data-name="'.$item->name.'" data-bdate="'.date("dmy", strtotime($item->birth_date)).'" data-toggle="modal" data-target="#mdReset"><i class="material-icons-outlined">restart_alt</i></a>
                                             </td>
                                         </tr>
                                     ';
@@ -79,6 +79,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="mdID" class="form-control" name="nisn">
+                <input type="hidden" id="mdBDATE" class="form-control" name="bdate">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -92,8 +93,10 @@
     })
     $('#user tbody').on('click', '.mdReset', function(){
         const id = $(this).data('id')
+        const bdate = $(this).data('bdate')
         const name = $(this).data('name')
         $('#mdID').val(id)
-        $("#mdReset .modal-body").html('<p style="margin-bottom: 5px">Reset <mark>' + name + '</mark>\'s <code>password</code> to:</p><p><code>password_baru_' + id + '</code></p>');
+        $('#mdBDATE').val(bdate)
+        $("#mdReset .modal-body").html('<p style="margin-bottom: 5px">Reset <mark>' + name + '</mark>\'s <code>password</code> to:</p><p><code>' + bdate + '</code></p>');
     })
 </script>
