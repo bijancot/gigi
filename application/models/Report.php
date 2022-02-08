@@ -73,6 +73,15 @@
             $this->db->where($param);
             return $this->db->get()->row();
         }
+        public function get21DayReport($param) {
+            $this->db->select('count(rd.created_at) as entry, r.report_id as report_id, r.day as day, r.status as status');
+            $this->db->from('report r');
+            $this->db->join('report_detail rd', 'rd.report_id = r.report_id', 'left');
+            $this->db->where($param);
+            $this->db->group_by('rd.created_at');
+            $this->db->order_by('rd.created_at DESC');
+            return $this->db->get()->row();
+        }
         public function getYesterdayReport($param) {
             $this->db->select('count(rd.created_at) as entry, r.report_id as report_id, r.day as day, r.status as status');
             $this->db->from('report r');

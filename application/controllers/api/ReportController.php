@@ -34,7 +34,17 @@
                 'r.status !=' => 'canceled'
             );
             $temp = $this->Report->getDailyReport($arr);
-            if ($temp->report_id == null) {
+            $day21Report = $this->Report->get21DayReport($arr);
+            if ($temp->report_id == null && $day21Report->day == 21 && $day21Report == 'finished') {
+                $day21 = $this->Report->get21DayReport($arr);
+                $report = array(
+                    'report_id' => $day21->report_id,
+                    "entry" => $day21->entry,
+                    "time" => $time,
+                    "day" => $day21->day,
+                    "status" => $day21->status
+                );
+            } else if ($temp->report_id == null) {
                 $first_time = $this->Report->getFirstTimeReport($arr);
                 $report = array(
                     'report_id' => $first_time->report_id,
