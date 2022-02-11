@@ -97,6 +97,7 @@
         }
         public function reportAdd_post() {
             $current_time = date("H");
+            $today = date("Y-m-d h:i:s");
             if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 24) {
                 $report_id = $this->post('report_id');
                 $category = $this->post('category');
@@ -107,6 +108,7 @@
                     'image' => $image,
                     'category' => $category,
                     'status' => $status,
+                    'created_at' => $today
                 );
                 $result = $this->Report->addReport($arr);
                 if ($result) {
