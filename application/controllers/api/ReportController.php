@@ -97,7 +97,7 @@
         }
         public function reportAdd_post() {
             $current_time = date("H");
-            if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 21) {
+            if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 24) {
                 $report_id = $this->post('report_id');
                 $category = $this->post('category');
                 $status = $this->post('status');
@@ -120,7 +120,7 @@
                 if ($current_time < 17) {
                     $this->response(['status' => false, 'message' => 'waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
                 } else {
-                    $this->response(['status' => false, 'message' => 'waktu upload malam pukul 17:00 sampai 21:00 WIB'], 200);
+                    $this->response(['status' => false, 'message' => 'waktu upload malam pukul 17:00 sampai 23:59 WIB'], 200);
                 }
             }
         }
