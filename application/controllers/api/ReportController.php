@@ -101,7 +101,6 @@
             //date("Y-m-d H:i:s");
             $today = date("Y-m-d H:i:s");
             if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 24) {
-//                if ($cureent_time <17){
                 $report_id = $this->post('report_id');
                 $category = $this->post('category');
                 $status = $this->post('status');
@@ -123,7 +122,6 @@
                 }
             } else {
                 if ($current_time < 17) {
-//                 if (2<17) {
                     $this->response(['status' => false, 'message' => 'waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
                 } else {
                     $this->response(['status' => false, 'message' => 'waktu upload malam pukul 17:00 sampai 23:59 WIB'], 200);
