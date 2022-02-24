@@ -113,7 +113,7 @@
             return $this->db->get_where('report', $param)->row();
         }
         public function addReport($param) {
-            $this->db->insert('report_detail', $param);
-            return ($this->db->affected_rows() != 1) ? false : true;
+            return $this->db->insert('report_detail', $param);
+//             return ($this->db->affected_rows() != 1) false : true;
         }
     }
