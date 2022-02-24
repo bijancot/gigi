@@ -97,8 +97,8 @@
         }
         public function reportAdd_post() {
             $current_time = date("H");
-//             if ($current_time >= 5 && $current_time <= 10 || $current_time >= 17 && $current_time <= 24) {
-               if ($cureent_time <17){
+            if ($current_time >= 5 && $current_time <= 10 || $current_time >= 17 && $current_time <= 24) {
+//                if ($cureent_time <17){
                 date_default_timezone_set("Asia/Jakarta");
                 //date("Y-m-d H:i:s");
                 $today = date("Y-m-d H:i:s");
@@ -122,13 +122,12 @@
                     $this->response(['status' => false, 'message' => 'Tambah Report gagal'], 200);
                 }
             } else {
-                   echo "oops";
-//                 if ($current_time < 17) {
-// //                 if (2<17) {
-//                     $this->response(['status' => false, 'message' => 'waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
-//                 } else {
-//                     $this->response(['status' => false, 'message' => 'waktu upload malam pukul 17:00 sampai 23:59 WIB'], 200);
-//                 }
+                if ($current_time < 17) {
+//                 if (2<17) {
+                    $this->response(['status' => false, 'message' => 'waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
+                } else {
+                    $this->response(['status' => false, 'message' => 'waktu upload malam pukul 17:00 sampai 23:59 WIB'], 200);
+                }
             }
         }
         function upload_image($id, $category, $status){
