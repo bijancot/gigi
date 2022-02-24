@@ -96,8 +96,8 @@
             }
         }
         public function reportAdd_post() {
-            $current_time = date("H");
             date_default_timezone_set("Asia/Jakarta");
+            $current_time = date("H");            
             //date("Y-m-d H:i:s");
             $today = date("Y-m-d H:i:s");
             if ($current_time >= 5 && $current_time <= 12 || $current_time >= 17 && $current_time <= 24) {
