@@ -98,7 +98,7 @@
         public function reportAdd_post() {
             date_default_timezone_set("Asia/Jakarta");
             $current_time = date("H");            
-            if ($current_time >= 5 && $current_time <= 12 || $current_time >= 17 && $current_time <= 24) {
+            if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 24) {
                 $report_id = $this->post('report_id');
                 $category = $this->post('category');
                 $status = $this->post('status');
