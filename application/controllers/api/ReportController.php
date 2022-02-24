@@ -121,7 +121,7 @@
                     $this->response(['status' => false, 'message' => 'Tambah Report gagal'], 200);
                 }
             } else {
-                if ($current_time < 17) {
+                if ($current_time) {
                     $this->response(['status' => false, 'message' => 'waktu upload pagi pukul 5:00 sampai 8:00 WIB'], 200);
                 } else {
                     $this->response(['status' => false, 'message' => 'waktu upload malam pukul 17:00 sampai 23:59 WIB'], 200);
