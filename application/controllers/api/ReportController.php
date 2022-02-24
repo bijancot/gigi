@@ -114,6 +114,7 @@
                     'created_at' => $today
                 );
                 $result = $this->Report->addReport($arr);
+                 var_dump($result);
                 if ($result) {
                     $this->response([
                         'status' => true, 
