@@ -100,7 +100,7 @@
             date_default_timezone_set("Asia/Jakarta");
             //date("Y-m-d H:i:s");
             $today = date("Y-m-d H:i:s");
-            if ($current_time >= 5 && $current_time <= 8 || $current_time >= 17 && $current_time <= 24) {
+            if ($current_time >= 5 && $current_time <= 12 || $current_time >= 17 && $current_time <= 24) {
                 $report_id = $this->post('report_id');
                 $category = $this->post('category');
                 $status = $this->post('status');
@@ -110,7 +110,7 @@
                     'image' => $image,
                     'category' => $category,
                     'status' => $status,
-                    'created_at' => $today
+                    'created_at' => date("Y-m-d H:i:s")
                 );
                 $result = $this->Report->addReport($arr);
                 if ($result) {
